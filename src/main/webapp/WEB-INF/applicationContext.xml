@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+ 		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+	
+		<!-- 配置Hibernate SessionFactory  -->
+		<!-- 定义数据源Bean,使用C3P0数据源实现,并注入数据源的必要信息 -->
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			p:driverClass="com.mysql.jdbc.Driver"
+			p:jdbcUrl="jdbc:mysql://localhost/bscms"
+			p:user="root"
+			p:password="Tanker20120828"
+			p:maxPoolSize="40"
+			p:minPoolSize="2"
+			p:initialPoolSize="2"
+			p:maxIdleTime="1800" />
+			
+		<!-- 定义HIbernate的SessionFactory,SessionFactory需要依赖数据源, 注入dataSource -->
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+			p:dataSource-ref="dataSource">
+			<!-- annotatedClasses用来列出全部持久化类 -->
+			<property name="annotatedClasses">
+				<list>
+					<!-- 以下用来列出来所有的PO类 -->
+					<value>com.cmttbj.bscms.modules.entity.Customer</value>
+					<value>com.cmttbj.bscms.modules.entity.DoorToDoor</value>
+					<value>com.cmttbj.bscms.modules.entity.MobileProduct</value>
+					<value>com.cmttbj.bscms.modules.entity.NewBroadband</value>
+					<value>com.cmttbj.bscms.modules.entity.RenewBroadband</value>
+					<value>com.cmttbj.bscms.modules.entity.UserInfo</value>
+					<value>com.cmttbj.bscms.modules.entity.ServiceCentre</value>				
+				</list>
+			</property>
+			<!-- 定义HibernateSessionFactory属性 -->
+			<property name="hibernateProperties">
+				<props>
+					<!-- 指定Hibernate的连接方言 -->
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.format_sql">true</prop>
+				</props>
+			</property>
+		</bean>	
+		
+		<!-- 配置HibernateTransactionManager需要依赖注入SessionFactory -->
+		<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+			p:sessionFactory-ref="sessionFactory"/>
+			
+		<!-- 配置事务增强处理Bean,指定事务管理器 -->  
+		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+			<tx:attributes>
+				<tx:method name="get" read-only="true" />
+				<tx:method name="*" isolation="DEFAULT"
+					propagation="REQUIRED" timeout="20" />
+			</tx:attributes>
+		</tx:advice>	
+			
+		<!-- AOP配置的元素 -->
+		<aop:config>
+			<!-- 配置一个切入点 -->
+			<aop:pointcut id="myPointcut" expression="bean(dailyReportService)" />
+			<aop:pointcut id="myPointcut2" expression="bean(serviceCentreService)" />
+			<aop:pointcut id="myPointcut3" expression="bean(userInfoService)" />
+			<aop:pointcut id="myPointcut4" expression="bean(newBroadbandService)" />
+			<aop:pointcut id="myPointcut5" expression="bean(renewBroadbandService)" />
+			<aop:pointcut id="myPointcut6" expression="bean(doorToDoorService)" />
+			<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut2"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut3"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut4"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut5"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut6"/>
+		</aop:config>
+		
+
+		<!-- 配置Action及其依赖 -->		
+		<import resource="actionContext.xml"/>
+		<!-- 配置Service组件,并将DAO组件注入Service组件 -->
+		<import resource="serviceContext.xml"/>
+		<!-- 配置DAO组件,并将SessiongFactory注入DAO组件 -->	 
+		<import resource="daoContext.xml"/>
+
+</beans>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<package name="bscms" extends="struts-default" namespace="/views" >
+	
+		<action name="page_*" class="pageAction" method="{1}">
+			<result name="success">/views/{1}.jsp</result>
+			<result name="error">/views/userlogin.jsp</result>
+		</action>
+		
+		<action name="process_*" class="loginAction" method="{1}">
+			<result name="input">/views/userLogin.jsp</result>
+			<result name="success">/views/dailyReportSubmit.jsp</result>
+			<result name="error">/views/userLogin.jsp</result>
+		</action>
+		
+		<action name="userInfo_*" class="userInfoAction" method="{1}">
+			<result name="success">/views/userRegist.jsp</result>
+			<result name="error">/views/userlogin.jsp</result>
+		</action>
+		
+		<action name="serviceCentre_*" class="serviceCentreAction" method="{1}">
+			<result name="success">/views/serviceCentreRegist.jsp</result>
+			<result name="error">/views/userLogin.jsp</result>
+		</action>
+		
+		<action name="dailyReport_*" class="dailyReportAction" method="{1}">			
+			<result name="add_success">/views/dailyReportSubmit.jsp</result>
+			<result name="show">/views/dailyReportDashboard.jsp</result>
+			<result name="error">/views/userLogin.jsp</result>
+		</action>
+		
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="add_success">/views/dailyReportSubmit.jsp</result>
+			<result name="error">/views/userLogin.jsp</result>			
+		</action>
+		
+	</package>	
+</struts>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+ 		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">	
+		
+		<!-- 配置DAO组件,并将SessiongFactory注入DAO组件 -->
+		<bean id="serviceCentreDao" class="com.cmttbj.bscms.modules.dao.impl.ServiceCentreDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />	
+		<bean id="customerDao" class="com.cmttbj.bscms.modules.dao.impl.CustomerDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="doorToDoorDao" class="com.cmttbj.bscms.modules.dao.impl.DoorToDoorDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="mobileProductDao" class="com.cmttbj.bscms.modules.dao.impl.MobileProductDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="newBroadbandDao" class="com.cmttbj.bscms.modules.dao.impl.NewBroadbandDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="renewBroadbandDao" class="com.cmttbj.bscms.modules.dao.impl.RenewBroadbandDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="userInfoDao" class="com.cmttbj.bscms.modules.dao.impl.UserInfoDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
+		<bean id="dailyReportDao" class="com.cmttbj.bscms.modules.dao.impl.DailyReportDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory"/>
+							 
+</beans>

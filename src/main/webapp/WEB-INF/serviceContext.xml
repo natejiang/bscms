@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+ 		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
+				 
+		<!-- 配置Service组件,并将DAO组件注入Service组件 -->
+		<bean id="dailyReportService" class="com.cmttbj.bscms.modules.service.impl.DailyReportServiceImpl"	
+			p:customerDao-ref="customerDao"
+			p:doorToDoorDao-ref="doorToDoorDao"
+			p:mobileProductDao-ref="mobileProductDao"
+			p:newBroadbandDao-ref="newBroadbandDao"
+			p:renewBroadbandDao-ref="renewBroadbandDao"
+			p:dailyReportDao-ref="dailyReportDao"/>	
+		<bean id="userInfoService" class="com.cmttbj.bscms.modules.service.impl.UserInfoServiceImpl"
+			p:userInfoDao-ref="userInfoDao"/>
+		<bean id="serviceCentreService" class="com.cmttbj.bscms.modules.service.impl.ServiceCentreServiceImpl"
+			p:serviceCentreDao-ref="serviceCentreDao"/>
+		<bean id="newBroadbandService" class="com.cmttbj.bscms.modules.service.impl.NewBroadbandServiceImpl"
+			p:newBroadbandDao-ref="newBroadbandDao"/>
+		<bean id="renewBroadbandService" class="com.cmttbj.bscms.modules.service.impl.RenewBroadbandServiceImpl"
+			p:renewBroadbandDao-ref="renewBroadbandDao"/>
+		<bean id="doorToDoorService" class="com.cmttbj.bscms.modules.service.impl.DoorToDoorServiceImpl"
+			p:doorToDoorDao-ref="doorToDoorDao"/>
+						 
+</beans>
