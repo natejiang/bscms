@@ -4,10 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.cmttbj.bscms.common.persistence.BaseDao;
-import com.cmttbj.bscms.modules.entity.ServiceCentre;
+import com.cmttbj.bscms.common.persistence.DailyReportCommonDao;
 import com.cmttbj.bscms.modules.entity.Customer;
+import com.cmttbj.bscms.modules.entity.ServiceCentre;
 
-public interface CustomerDao extends BaseDao<Customer>  {
+public interface CustomerDao extends BaseDao<Customer>,DailyReportCommonDao<Customer>  {
 	/**
 	 * @author Jiangnan
 	 * @date 2017-04-09

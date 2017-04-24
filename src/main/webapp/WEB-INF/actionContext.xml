@@ -18,7 +18,9 @@
 			p:serviceCentreService-ref="serviceCentreService" 
 			p:newBroadbandService-ref="newBroadbandService"
 			p:renewBroadbandService-ref="renewBroadbandService"
-			p:doorToDoorService-ref="doorToDoorService"/> 
+			p:doorToDoorService-ref="doorToDoorService"
+			p:mobileProductService-ref="mobileProductService"
+			p:customerService-ref="customerService"/> 
 		<bean id="loginAction" class="com.cmttbj.bscms.modules.action.LoginAction"
 			p:userInfoService-ref="userInfoService" /> 
 		<bean id="serviceCentreAction" class="com.cmttbj.bscms.modules.action.ServiceCentreAction"

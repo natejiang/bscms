@@ -18,7 +18,6 @@ public class DailyReportDaoHibernate4 implements DailyReportDao{
 	 * 注意:此DAO类没有继承BaseDaoHibernaternate4
 	 * @author Jiangnan
 	 * @date 2017-04-13
-	 * 
 	 */
 	private SessionFactory sessionFactory;	
 	public SessionFactory getSessionFactory() {

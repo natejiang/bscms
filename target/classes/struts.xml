@@ -32,6 +32,7 @@
 		<action name="dailyReport_*" class="dailyReportAction" method="{1}">			
 			<result name="add_success">/views/dailyReportSubmit.jsp</result>
 			<result name="show">/views/dailyReportDashboard.jsp</result>
+			<result name="showAll">/views/Dashboard.jsp</result>
 			<result name="error">/views/userLogin.jsp</result>
 		</action>
 		

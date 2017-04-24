@@ -35,8 +35,8 @@ public class DoorToDoorDaoHibernate4 extends BaseDaoHibernate4<DoorToDoor>
 	public List<Object> sumByDatesAndServiceCentre(Class<DoorToDoor> entityClazz, Date end, Date begin,
 			ServiceCentre serviceCentre){
 		return sessionFactory.getCurrentSession().createQuery("select sum(en.installedQuantity),sum(en.repairedQuantity) from " + entityClazz.getSimpleName() 
-			+ " en where en.date between ?0 and ?1 and en.serviceCentre = ?2" 
-			+ " order by en.date desc")
+				+ " en where en.date between ?0 and ?1 and en.serviceCentre = ?2" 
+				+ " order by en.date desc")
 			.setParameter("0", end)
 			.setParameter("1", begin)
 			.setParameter("2", serviceCentre)
@@ -63,5 +63,15 @@ public class DoorToDoorDaoHibernate4 extends BaseDaoHibernate4<DoorToDoor>
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDates(Class<DoorToDoor> entityClazz, Date end, Date begin) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.installedQuantity),sum(en.repairedQuantity) from " 
+				+ entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1" 
+				+ " order by en.date desc")
+			.setParameter("0", end)
+			.setParameter("1", begin)
+			.list();
+	}
 }

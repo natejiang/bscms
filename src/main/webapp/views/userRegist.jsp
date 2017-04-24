@@ -26,6 +26,7 @@
     		<div id="topmenu">
             	<ul>
                 	<li><a href="#">通知管理 </a></li>
+                	<li><a href="#">数据统计 </a></li>
                 	<li class="current"><a href="#">用户管理 </a></li>
                 	<li><a href="/bscms/views/page_serviceCentreRegist">服务中心管理</a></li>
                     <li><a href="#">个人设置</a></li>
@@ -81,7 +82,7 @@
                 <li><a href="javascript: document.cookie='theme=3'; window.location.reload();" title="Brown" id="brownswitch">b</a></li>
                 <li><a href="javascript: document.cookie='theme=4'; window.location.reload();" title="Mix" id="mixswitch">m</a></li>
             </ul>
-        </div>
+        </div><br />
 	  </div>
 </div>
 </body>

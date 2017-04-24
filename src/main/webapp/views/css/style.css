@@ -317,6 +317,7 @@ form#form input {
 }
 form#form select {
 	margin-left:5px;
+	width:100px;
 }
 form#form textarea {
 	width:410px;

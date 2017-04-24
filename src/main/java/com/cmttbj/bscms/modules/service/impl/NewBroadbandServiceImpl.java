@@ -1,5 +1,6 @@
 package com.cmttbj.bscms.modules.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +29,31 @@ public class NewBroadbandServiceImpl implements NewBroadbandService{
 	}
 
 	@Override
-	public List<Object> sumNewBroadbandByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
-		List<Object> list = newBroadbandDao.sumByDatesAndServiceCentre(NewBroadband.class, end, begin, serviceCentre);
+	public List<String> sumNewBroadbandByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
+		List<Object> objsList = newBroadbandDao
+				.sumByDatesAndServiceCentre(NewBroadband.class, end, begin, serviceCentre);
+		Object[] objs = (Object[]) objsList.get(0);
+		List<String> list = new ArrayList<>();
+		for(int i = 0;i < objs.length;i ++){
+			list.add(i, objs[i].toString());
+		}
+		return list;
+	}
+	
+	@Override
+	public List<NewBroadband> searchNewBroadbandBydates(Date end, Date begin) {
+		List<NewBroadband> list = newBroadbandDao.findByDates(NewBroadband.class, end, begin);
+		return list;
+	}
+
+	@Override
+	public List<String> sumNewBroadbandByDates(Date end, Date begin) {
+		List<Object> objsList = newBroadbandDao.sumByDates(NewBroadband.class, end, begin);
+		Object[] objs = (Object[]) objsList.get(0);
+		List<String> list = new ArrayList<>();
+		for (int i = 0; i < objs.length; i ++){
+			list.add(i, objs[i].toString());;
+		}	
 		return list;
 	}
 

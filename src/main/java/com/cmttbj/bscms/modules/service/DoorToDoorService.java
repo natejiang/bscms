@@ -12,7 +12,7 @@ import com.cmttbj.bscms.modules.entity.ServiceCentre;
 public interface DoorToDoorService {
 
 	List<DoorToDoor> searchDoorToDoorByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre);
-	
+	List<DoorToDoor> searchDoorToDoorByDates(Date end, Date begin);
 	List<Object> sumDoorToDoorByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre);
-	
+	List<String> sumDoorToDoorByDates(Date end, Date begin);
 }

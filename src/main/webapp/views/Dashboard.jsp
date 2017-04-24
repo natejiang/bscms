@@ -24,8 +24,10 @@
         	<h2>北京铁通宽带服务中心管理系统</h2>
     		<div id="topmenu">
             	<ul>
-                	<li><a href="#">店面通知</a></li>
-                	<li class="current"><a href="#">数据统计</a></li>
+                	<li><a href="#">通知管理 </a></li>
+                	<li class="current"><a href="#">数据统计 </a></li>
+                	<li><a href="/bscms/views/page_userRegist">用户管理 </a></li>
+                	<li><a href="#">服务中心管理</a></li>
                     <li><a href="#">个人设置</a></li>
               	</ul>
          	 </div>
@@ -65,15 +67,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#newBroadband">
-								<td><s:property value="ihomeBroadbandQuantity20"/></td>
-                            	<td><s:property value="ihomeBroadbandQuantity30"/></td>
-                                <td><s:property value="ihomeBroadbandQuantity50"/></td>
-                                <td><s:property value="ihomeBroadbandQuantity100"/></td>
+							<s:subset source="#sumNewBroadbandYestoday" start="0" count="4">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-                            <s:subset source="#newBroadbandSum" start="0" count="4">
+                            <s:subset source="#sumNewBroadbandMonth" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -92,15 +93,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#newBroadband">
-								<td><s:property value="onlyBroadbandQuantity20"/></td>
-                            	<td><s:property value="onlyBroadbandQuantity30"/></td>
-                                <td><s:property value="onlyBroadbandQuantity50"/></td>
-                                <td><s:property value="onlyBroadbandQuantity100"/></td>
+							<s:subset source="#sumNewBroadbandYestoday" start="4" count="4">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-                            <s:subset source="#newBroadbandSum" start="4" count="4">
+                            <s:subset source="#sumNewBroadbandMonth" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -123,15 +123,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#renewBroadband">
-								<td><s:property value="ihomeBroadbandQuantity20"/></td>
-                            	<td><s:property value="ihomeBroadbandQuantity30"/></td>
-                                <td><s:property value="ihomeBroadbandQuantity50"/></td>
-                                <td><s:property value="ihomeBroadbandQuantity100"/></td>
+							<s:subset source="#sumRenewBroadbandYestoday" start="0" count="4">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-							<s:subset source="#renewBroadbandSum" start="0" count="4">
+							<s:subset source="#sumRenewBroadbandMonth" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -150,15 +149,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#renewBroadband">
-								<td><s:property value="onlyBroadbandQuantity20"/></td>
-                            	<td><s:property value="onlyBroadbandQuantity30"/></td>
-                                <td><s:property value="onlyBroadbandQuantity50"/></td>
-                                <td><s:property value="onlyBroadbandQuantity100"/></td>
+							<s:subset source="#sumRenewBroadbandYestoday" start="4" count="4">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-							<s:subset source="#renewBroadbandSum" start="4" count="4">
+							<s:subset source="#sumRenewBroadbandMonth" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -177,14 +175,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#customer">
-								<td><s:property value="customerQuantity"/></td>              
-                            </s:iterator>
-                            </tr>
-                            <tr>	
-                            <s:iterator value="#sumCustomerMonth" id="name">					
+							<s:iterator value="#sumCustomerYestoday" id="name">					
 								<td><s:property value="name"/></td>   
 							</s:iterator>
+                            </tr>
+                            <tr>						
+							<s:iterator value="#sumCustomerMonth" id="name">					
+								<td><s:property value="name"/></td>   
+							</s:iterator> 
                             </tr>
 						</tbody>
 					</table>				         
@@ -200,13 +198,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#doorToDoor">
-								<td><s:property value="installedQuantity"/></td>
-                            	<td><s:property value="repairedQuantity"/></td>
+							<s:subset source="#sumDoorToDoorYestoday" start="0" count="2">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-							<s:subset source="#doorToDoorSum" start="0" count="2">
+							<s:subset source="#sumDoorToDoorMonth" start="0" count="2">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -227,14 +226,14 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#mobileProduct">
-								<td><s:property value="simQuantity"/></td>
-                            	<td><s:property value="terminalQuantity"/></td>
-                            	<td><s:property value="televisionQuantity"/></td>
+							<s:subset source="#sumMobileProductYestoday" start="0" count="3">
+							<s:iterator>
+								<td><s:property/></td>   
                             </s:iterator>
+                            </s:subset>
                             </tr>
                             <tr>
-							<s:subset source="#mobileProductSum" start="0" count="3">
+							<s:subset source="#sumMobileProductMonth" start="0" count="3">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>

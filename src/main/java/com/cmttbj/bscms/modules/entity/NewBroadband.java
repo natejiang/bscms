@@ -1,5 +1,6 @@
 package com.cmttbj.bscms.modules.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,8 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="New_Broadband")
-public class NewBroadband implements java.io.Serializable{
+@Table(name="new_broadband")
+public class NewBroadband implements Serializable{
 
 	private static final long serialVersionUID = 48L;
 	/**
@@ -47,8 +48,10 @@ public class NewBroadband implements java.io.Serializable{
 	private ServiceCentre serviceCentre;
 	@Temporal(TemporalType.DATE)
 	private Date date = new Date();
+	
 	public NewBroadband() {
 	}
+	
 	public NewBroadband(Integer id, Integer ihomeBroadbandQuantity20, Integer ihomeBroadbandQuantity30,
 			Integer ihomeBroadbandQuantity50, Integer ihomeBroadbandQuantity100, Integer onlyBroadbandQuantity20,
 			Integer onlyBroadbandQuantity30, Integer onlyBroadbandQuantity50, Integer onlyBroadbandQuantity100,
@@ -66,6 +69,7 @@ public class NewBroadband implements java.io.Serializable{
 		this.serviceCentre = serviceCentre;
 		this.date = date;
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -120,17 +124,21 @@ public class NewBroadband implements java.io.Serializable{
 	public void setOnlyBroadbandQuantity100(Integer onlyBroadbandQuantity100) {
 		this.onlyBroadbandQuantity100 = onlyBroadbandQuantity100;
 	}
+
 	public ServiceCentre getServiceCentre() {
 		return serviceCentre;
 	}
+
 	public void setServiceCentre(ServiceCentre serviceCentre) {
 		this.serviceCentre = serviceCentre;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	
 }

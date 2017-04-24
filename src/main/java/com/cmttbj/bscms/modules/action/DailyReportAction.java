@@ -4,29 +4,30 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import com.cmttbj.bscms.modules.entity.DailyReport;
-import com.cmttbj.bscms.modules.entity.ServiceCentre;
-import com.cmttbj.bscms.common.util.MergeClass;
 import com.cmttbj.bscms.modules.entity.Customer;
+import com.cmttbj.bscms.modules.entity.DailyReport;
 import com.cmttbj.bscms.modules.entity.DoorToDoor;
 import com.cmttbj.bscms.modules.entity.MobileProduct;
 import com.cmttbj.bscms.modules.entity.NewBroadband;
 import com.cmttbj.bscms.modules.entity.RenewBroadband;
+import com.cmttbj.bscms.modules.entity.ServiceCentre;
+import com.cmttbj.bscms.modules.service.CustomerService;
 import com.cmttbj.bscms.modules.service.DailyReportService;
 import com.cmttbj.bscms.modules.service.DoorToDoorService;
-import com.cmttbj.bscms.modules.service.ServiceCentreService;
+import com.cmttbj.bscms.modules.service.MobileProductService;
 import com.cmttbj.bscms.modules.service.NewBroadbandService;
 import com.cmttbj.bscms.modules.service.RenewBroadbandService;
+import com.cmttbj.bscms.modules.service.ServiceCentreService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ * @author Jiangnan
+ * @date 2017-04-08
+ */
 public class DailyReportAction extends ActionSupport {
 
 	private static final long serialVersionUID = 48L;
-	/**
-	 * @author Jiangnan
-	 * @date 2017-04-08
-	 */
+
 	private Customer customer;
 	private DoorToDoor doorToDoor;
 	private MobileProduct mobileProduct;
@@ -39,8 +40,25 @@ public class DailyReportAction extends ActionSupport {
 	private NewBroadbandService newBroadbandService;
 	private RenewBroadbandService renewBroadbandService;
 	private DoorToDoorService doorToDoorService;
-	
-	
+	private MobileProductService mobileProductService;
+	private CustomerService customerService;
+		
+	public MobileProductService getMobileProductService() {
+		return mobileProductService;
+	}
+
+	public void setMobileProductService(MobileProductService mobileProductService) {
+		this.mobileProductService = mobileProductService;
+	}
+
+	public CustomerService getCustomerService() {
+		return customerService;
+	}
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
 	public DoorToDoorService getDoorToDoorService() {
 		return doorToDoorService;
 	}
@@ -153,8 +171,7 @@ public class DailyReportAction extends ActionSupport {
 		dailyReport.setNewBroadband(newBroadband);		
 		renewBroadband.setServiceCentre(serviceCentre);
 		dailyReport.setRenewBroadband(renewBroadband);			
-		int result = dailyReportService.addDailyReport(dailyReport, serviceCentre);	
-		
+		int result = dailyReportService.addDailyReport(dailyReport, serviceCentre);		
 		if(result > 0)
 		{
 			return "add_success";
@@ -162,68 +179,135 @@ public class DailyReportAction extends ActionSupport {
 		{
 			return ERROR;		
 		}				
-	}
+	}		
 	
 	public String show(){
+		/**
+		 * ServiceCentre权限仪表盘
+		 * @return
+		 */
 		ActionContext ctx = ActionContext.getContext();
-		
 		serviceCentre = (ServiceCentre) ctx.getSession().get("serviceCentre");	
 		Calendar b = Calendar.getInstance();
 		b.roll(5, -1);	
-		//昨天
+		//代表昨天
 		Date begin = b.getTime();		
-		Calendar c = Calendar.getInstance();
-		System.out.println(c.toString());
-		//当月第一天，如此写原因未知
+		Calendar c = Calendar.getInstance();	
 		c.roll(5, 1-c.get(5));;	
+		//代表当月第一天
 		Date end = c.getTime();	
 		System.out.println(begin.toString());
 		System.out.println(end.toString());
-		
-		List<NewBroadband> list = newBroadbandService.searchNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);
-		ctx.put("newBroadband", list.get(0));		
-		
-		List<Object> listNewBroadbandTotal = newBroadbandService.sumNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);
-//		String[] prams = {"ihomeBroadbandQuantity20",
-//				"ihomeBroadbandQuantity30",
-//				"ihomeBroadbandQuantity50",
-//				"ihomeBroadbandQuantity100",
-//				"onlyBroadbandQuantity20",
-//				"onlyBroadbandQuantity30",
-//				"onlyBroadbandQuantity50",
-//				"onlyBroadbandQuantity100"
-//				};
-//		MergeClass<NewBroadband> mc = new MergeClass<>();
-//		NewBroadband newBroadbandTotal = (NewBroadband)mc.merger(list, prams,NewBroadband.class);	
-		
-		Object[] objs = (Object[]) listNewBroadbandTotal.get(0);
-		System.out.println(objs.toString());
-		ctx.put("newBroadbandTotal", objs);	
-		
-		List<RenewBroadband> list1 = renewBroadbandService.searchRenewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);
-		ctx.put("renewBroadband", list1.get(0));			
-		String[] prams1 = {"ihomeBroadbandQuantity20",
-				"ihomeBroadbandQuantity30",
-				"ihomeBroadbandQuantity50",
-				"ihomeBroadbandQuantity100",
-				"onlyBroadbandQuantity20",
-				"onlyBroadbandQuantity30",
-				"onlyBroadbandQuantity50",
-				"onlyBroadbandQuantity100"
-				};
-		MergeClass<RenewBroadband> mc1 = new MergeClass<>();
-		RenewBroadband renewBroadbandTotal = (RenewBroadband)mc1.merger(list1, prams1,RenewBroadband.class);	
-		ctx.put("renewBroadbandTotal", renewBroadbandTotal);	
-		
-//		List<Object> list3 = doorToDoorService.sumDoorToDoorByDatesAndServiceCentre(end, begin, serviceCentre);
-//		for(Object d : list3){
-//			Object[] objs = (Object[])d;
-//			System.out.println(objs[0].toString());
-//			System.out.println(objs[1].toString());
-//		}
-				
-		return "show";		
-		
-		
+		//*************************************************************************	
+		//展示该服务中心昨天新装宽带数据
+		List<NewBroadband> listNewBroadband = newBroadbandService
+				.searchNewBroadbandByDatesAndServiceCentre(begin, begin, serviceCentre);
+		ctx.put("newBroadband", listNewBroadband.get(0));		
+		//展示该服务中心月累计新装宽带数据,注意字符串数组顺序问题
+		List<String> sumNewBroadbandMonth = newBroadbandService
+				.sumNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);	
+		ctx.put("newBroadbandSum", sumNewBroadbandMonth);	
+		//*************************************************************************
+		//展示该服务中心昨天续费宽带数据
+		List<RenewBroadband> listRenewBroadband = renewBroadbandService
+				.searchRenewBroadbandByDatesAndServiceCentre(begin, begin, serviceCentre);
+		ctx.put("renewBroadband", listRenewBroadband.get(0));
+		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
+		List<String> sumRenewBroadbandMonth = newBroadbandService
+				.sumNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);	
+		ctx.put("renewBroadbandSum", sumRenewBroadbandMonth);	
+		//*************************************************************************	
+		//展示该服务中心昨天客流量宽带数据
+		List<Customer> listCustomer = customerService
+				.searchCustomerByDatesAndServiceCentre(begin, begin, serviceCentre);
+		ctx.put("customer", listCustomer.get(0));
+		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
+		List<String> sumCustomerMonth = customerService
+				.sumCustomerByDatesAndServiceCentre(end, begin, serviceCentre);	
+		System.out.println(sumCustomerMonth.get(0).toString());
+		ctx.put("sumCustomerMonth", sumCustomerMonth);			
+		//*************************************************************************			
+		//展示该服务中心昨天上门工作量数据
+		List<DoorToDoor> listDoorToDoor = doorToDoorService
+				.searchDoorToDoorByDatesAndServiceCentre(begin, begin, serviceCentre);
+		ctx.put("doorToDoor", listDoorToDoor.get(0));
+		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
+		List<Object> listDoorToDoorSum = doorToDoorService
+				.sumDoorToDoorByDatesAndServiceCentre(end, begin, serviceCentre);	
+		Object[] objs3 = (Object[])listDoorToDoorSum.get(0);	
+		String[] strs3 = new String[objs3.length];
+		for (int i = 0; i < objs3.length; i ++){
+			strs3[i] = objs3[i].toString();
+		}
+		ctx.put("doorToDoorSum", strs3);	
+		//*************************************************************************	
+		//展示该服务中心昨天移动产品数据
+		List<MobileProduct> listMobileProduct = mobileProductService
+				.searchMobileProductByDatesAndServiceCentre(begin, begin, serviceCentre);
+		ctx.put("mobileProduct", listMobileProduct.get(0));
+		//展示该服务中心月累计移动产品数据,注意字符串数组顺序问题
+		List<Object> listMobileProductSum = mobileProductService
+				.sumMobileProductByDatesAndServiceCentre(end, begin, serviceCentre);	
+		Object[] objs4 = (Object[])listMobileProductSum.get(0);	
+		String[] strs4 = new String[objs4.length];
+		for (int i = 0; i < objs4.length; i ++){
+			strs4[i] = objs4[i].toString();
+		}
+		ctx.put("mobileProductSum", strs4);		
+		return "show";						
+	}	
+	
+	public String showAll(){
+		/**
+		 * 机关权限仪表盘
+		 * @return
+		 */
+		ActionContext ctx = ActionContext.getContext();
+		Calendar b = Calendar.getInstance();
+		b.roll(5, -1);	
+		//代表昨天
+		Date begin = b.getTime();		
+		Calendar c = Calendar.getInstance();	
+		c.roll(5, 1-c.get(5));;	
+		//代表当月第一天
+		Date end = c.getTime();	
+		System.out.println(begin.toString());
+		System.out.println(end.toString());
+		//*************************************************************************	
+		//展示所有服务中心昨天新装宽带数据
+		List<String> sumNewBroadbandYestoday = newBroadbandService.sumNewBroadbandByDates(begin, begin);		
+		ctx.put("sumNewBroadbandYestoday", sumNewBroadbandYestoday);		
+		//展示所有服务中心月累计新装宽带数据,注意字符串数组顺序问题
+		List<String> sumNewBroadbandMonth = newBroadbandService.sumNewBroadbandByDates(end, begin);	
+		ctx.put("newBroadbandSum", sumNewBroadbandMonth);	
+		//*************************************************************************
+		//展示所有服务中心昨天续费宽带数据
+		List<String> sumRenewBroadbandYesterday = renewBroadbandService.sumRenewBroadbandByDates(begin, begin);
+		ctx.put("sumRenewBroadbandYesterday", sumRenewBroadbandYesterday);
+		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
+		List<String> sumRenewBroadbandMonth = renewBroadbandService.sumRenewBroadbandByDates(end, begin);	
+		ctx.put("sumRenewBroadbandMonth", sumRenewBroadbandMonth);	
+		//*************************************************************************	
+		//展示该服务中心昨天客流量宽带数据
+		List<String> sumCustomerYestoday = customerService.sumCustomerByDates(begin, begin);
+		ctx.put("sumCustomerYestoday", sumCustomerYestoday);
+		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
+		List<String> sumCustomerMonth = customerService.sumCustomerByDates(end, begin);				
+		ctx.put("sumCustomerMonth", sumCustomerMonth);			
+		//*************************************************************************			
+		//展示该服务中心昨天上门工作量数据
+		List<String> sumDoorToDoorYestoday = doorToDoorService.sumDoorToDoorByDates(begin, begin);
+		ctx.put("sumDoorToDoorYestoday", sumDoorToDoorYestoday);
+		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
+		List<String> sumDoorToDoorMonth = doorToDoorService.sumDoorToDoorByDates(end, begin);	
+		ctx.put("sumDoorToDoorMonth", sumDoorToDoorMonth);	
+		//*************************************************************************	
+		//展示所有服务中心昨天移动产品数据
+		List<String> sumMobileProductYestoday = mobileProductService.sumMobileProductByDates(begin, begin);
+		ctx.put("sumMobileProductYestoday", sumMobileProductYestoday);
+		//展示所有服务中心月累计移动产品数据,注意字符串数组顺序问题
+		List<String> sumMobileProductMonth = mobileProductService.sumMobileProductByDates(end, begin);	
+		ctx.put("sumMobileProductMonth", sumMobileProductMonth);		
+		return "showAll";						
 	}	
 }

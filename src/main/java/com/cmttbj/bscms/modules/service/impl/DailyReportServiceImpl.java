@@ -79,18 +79,15 @@ public class DailyReportServiceImpl implements DailyReportService{
 	@Override
 	public int addDailyReport(DailyReport dailyReport, ServiceCentre serviceCentre) {
 		
-		Date today = new Date();
-		
-		//日报表每日只能存在一条记录
+		Date today = new Date();		
 		List<Customer> list = customerDao.findByDateAndServiceCentreId(Customer.class, today, serviceCentre);
+		//日报表每日只能存在一条记录
 		if(list.isEmpty()){
 			dailyReportDao.save(dailyReport);
 		}else{
 			dailyReportDao.deleteByDateAndServiceCentre(DailyReport.class, today, serviceCentre);
 			dailyReportDao.save(dailyReport);
 		}
-		
 		return 1;		
 	}
-
 }

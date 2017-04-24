@@ -44,7 +44,7 @@
         <div id="wrapper">
             <div id="content">             
                 <div id="box">
-                	<h3 id="adduser">当日数据</h3>
+                	<h3 id="adduser">提交数据</h3>
                     <form id="form" action="/bscms/views/dailyReport_add" method="post">
                       <fieldset>
                         <legend>宽带新装</legend>
@@ -143,7 +143,7 @@
                 <li><a href="javascript: document.cookie='theme=3'; window.location.reload();" title="Brown" id="brownswitch">b</a></li>
                 <li><a href="javascript: document.cookie='theme=4'; window.location.reload();" title="Mix" id="mixswitch">m</a></li>
             </ul>
-        </div>
+        </div><br />
 	  </div>
 </div>
 </body>

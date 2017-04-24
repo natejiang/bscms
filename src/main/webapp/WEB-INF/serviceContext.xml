@@ -30,5 +30,9 @@
 			p:renewBroadbandDao-ref="renewBroadbandDao"/>
 		<bean id="doorToDoorService" class="com.cmttbj.bscms.modules.service.impl.DoorToDoorServiceImpl"
 			p:doorToDoorDao-ref="doorToDoorDao"/>
+		<bean id="customerService" class="com.cmttbj.bscms.modules.service.impl.CustomerServiceImpl"
+			p:customerDao-ref="customerDao"/>
+		<bean id="mobileProductService" class="com.cmttbj.bscms.modules.service.impl.MobileProductServiceImpl"
+			p:mobileProductDao-ref="mobileProductDao"/>
 						 
 </beans>

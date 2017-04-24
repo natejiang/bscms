@@ -49,14 +49,14 @@ public class NewBroadbandDaoHibernate4 extends BaseDaoHibernate4<NewBroadband>
 				+ " order by en.date desc", 
 				end, begin);
 	}
-
+	
 	@Override
 	public List<NewBroadband> findByDatesAndCompany(Class<NewBroadband> entityClazz, Date end, Date begin,
 			String company) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//求和实体属性根据日期和服务中心
 	@SuppressWarnings("unchecked")
 	public List<Object> sumByDatesAndServiceCentre(Class<NewBroadband> entityClazz, Date end, Date begin,
 			ServiceCentre serviceCentre) {
@@ -73,6 +73,24 @@ public class NewBroadbandDaoHibernate4 extends BaseDaoHibernate4<NewBroadband>
 				.setParameter("0", end)
 				.setParameter("1", begin)
 				.setParameter("2", serviceCentre)
+				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDates(Class<NewBroadband> entityClazz, Date end, Date begin) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.ihomeBroadbandQuantity20)"
+				+ ",sum(en.ihomeBroadbandQuantity30)"
+				+ ",sum(en.ihomeBroadbandQuantity50)"
+				+ ",sum(en.ihomeBroadbandQuantity100)"
+				+ ",sum(en.onlyBroadbandQuantity20)"
+				+ ",sum(en.onlyBroadbandQuantity30)"
+				+ ",sum(en.onlyBroadbandQuantity50)"
+				+ ",sum(en.onlyBroadbandQuantity100) from " + entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1" 
+				+ " order by en.date desc")
+				.setParameter("0", end)
+				.setParameter("1", begin)
 				.list();
 	}		
 }

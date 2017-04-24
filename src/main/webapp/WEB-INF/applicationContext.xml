@@ -59,7 +59,7 @@
 		<!-- 配置事务增强处理Bean,指定事务管理器 -->  
 		<tx:advice id="txAdvice" transaction-manager="transactionManager">
 			<tx:attributes>
-				<tx:method name="get" read-only="true" />
+				<tx:method name="get*" read-only="true" />
 				<tx:method name="*" isolation="DEFAULT"
 					propagation="REQUIRED" timeout="20" />
 			</tx:attributes>
@@ -68,22 +68,19 @@
 		<!-- AOP配置的元素 -->
 		<aop:config>
 			<!-- 配置一个切入点 -->
-			<aop:pointcut id="myPointcut" expression="bean(dailyReportService)" />
-			<aop:pointcut id="myPointcut2" expression="bean(serviceCentreService)" />
-			<aop:pointcut id="myPointcut3" expression="bean(userInfoService)" />
-			<aop:pointcut id="myPointcut4" expression="bean(newBroadbandService)" />
-			<aop:pointcut id="myPointcut5" expression="bean(renewBroadbandService)" />
-			<aop:pointcut id="myPointcut6" expression="bean(doorToDoorService)" />
+			<aop:pointcut id="myPointcut" 
+				expression="bean(userInfoService)
+					||bean(dailyReportService)
+					||bean(doorToDoorService)
+					||bean(newBroadbandService)
+					||bean(renewBroadbandService)
+					||bean(customerService)
+					||bean(mobileProductService)
+					||bean(serviceCentreService)" />
 			<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
 			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut2"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut3"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut4"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut5"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut6"/>
 		</aop:config>
 		
-
 		<!-- 配置Action及其依赖 -->		
 		<import resource="actionContext.xml"/>
 		<!-- 配置Service组件,并将DAO组件注入Service组件 -->

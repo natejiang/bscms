@@ -26,6 +26,7 @@
     		<div id="topmenu">
             	<ul>
                 	<li><a href="#">通知管理 </a></li>
+                	<li><a href="/bscms/views/dailyReport_showAll">数据统计 </a></li>
                 	<li><a href="/bscms/views/page_userRegist">用户管理 </a></li>
                 	<li class="current"><a href="#">服务中心管理 </a></li>
                     <li><a href="#">个人设置</a></li>
@@ -52,24 +53,21 @@
                         <label>名称</label> 
                         <input name="serviceCentre.serviceCentreName" type="text" tabindex="1" />                    
                         <br />
-                        <label >隶属分公司</label>
+                        <label>隶属</label>
                         <select name="serviceCentre.company">
-                          <option selected="selected" label="none" value="none">
-                          General
-                          </option>
-                          <option label="中心区" value="中心区">
-                          </option>
-                          <option label="北区" value="北区">
-                          </option>
-                          <option label="南区" value="南区">
-                          </option>  
-                          <option label="朝阳" value="朝阳">
-                          </option> 
+                          <option selected="selected" label="机关" value="jiguan">机关</option> 
+                          <option label="中心区" value="centre">中心区</option>                              
+                          <option label="南区" value="south">南区</option>  
+                          <option label="北区" value="north">北区</option>                         
+                          <option label="朝阳" value="chaoyang">朝阳</option>
+                          <option label="通顺" value="tongshu">通顺</option>
+                          <option label="郊区" value="jiaoqv">郊区</option>
+                          <option label="昌延" value="changyan">昌延</option> 
                         </select>
                       </fieldset>                               
                       <div align="center">
-	                  	<input id="button1" type="submit" value="Send"  /> 
-	                    <input id="button2" type="reset" />
+	                  	<input id="button1" type="submit" value="确认"  /> 
+	                    <input id="button2" type="reset" value="重置"/>
                       </div>                                   
                     </form>
                 </div>
