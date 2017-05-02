@@ -16,8 +16,8 @@
 		<!-- 定义数据源Bean,使用C3P0数据源实现,并注入数据源的必要信息 -->
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 			p:driverClass="com.mysql.jdbc.Driver"
-			p:jdbcUrl="jdbc:mysql://localhost/bscms"
-			p:user="root"
+			p:jdbcUrl="jdbc:mysql://192.168.122.9/bscms"
+			p:user="jiangnan"
 			p:password="Tanker20120828"
 			p:maxPoolSize="40"
 			p:minPoolSize="2"
@@ -37,6 +37,7 @@
 					<value>com.cmttbj.bscms.modules.entity.NewBroadband</value>
 					<value>com.cmttbj.bscms.modules.entity.RenewBroadband</value>
 					<value>com.cmttbj.bscms.modules.entity.UserInfo</value>
+					<value>com.cmttbj.bscms.modules.entity.ManagerInfo</value>
 					<value>com.cmttbj.bscms.modules.entity.ServiceCentre</value>				
 				</list>
 			</property>
@@ -76,7 +77,8 @@
 					||bean(renewBroadbandService)
 					||bean(customerService)
 					||bean(mobileProductService)
-					||bean(serviceCentreService)" />
+					||bean(serviceCentreService)
+					||bean(managerInfoService)" />
 			<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
 			<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
 		</aop:config>

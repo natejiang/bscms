@@ -21,8 +21,9 @@ public class UserInfoDaoHibernate4 extends BaseDaoHibernate4<UserInfo>
 	}
 
 	@Override
-	public List<UserInfo> findByUsernameAndPassword(Class<UserInfo> entityClazz, String username, String password) {
-		return find("select en from " + entityClazz.getSimpleName() + " en where en.username = ? and en.password = ?", username, password);
+	public List<UserInfo> findByUsernameAndPassword(UserInfo userInfo) {
+		return find("select u from UserInfo u where u.username = ? and u.password = ?"
+				, userInfo.getUsername(), userInfo.getPassword());
 	}
 
 }

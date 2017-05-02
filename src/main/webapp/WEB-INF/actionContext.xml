@@ -22,7 +22,7 @@
 			p:mobileProductService-ref="mobileProductService"
 			p:customerService-ref="customerService"/> 
 		<bean id="loginAction" class="com.cmttbj.bscms.modules.action.LoginAction"
-			p:userInfoService-ref="userInfoService" /> 
+			p:managerInfoService-ref="managerInfoService" /> 
 		<bean id="serviceCentreAction" class="com.cmttbj.bscms.modules.action.ServiceCentreAction"
 			p:serviceCentreService-ref="serviceCentreService" /> 
 		<bean id="userInfoAction" class="com.cmttbj.bscms.modules.action.UserInfoAction"

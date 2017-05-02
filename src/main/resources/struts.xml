@@ -15,7 +15,8 @@
 		
 		<action name="process_*" class="loginAction" method="{1}">
 			<result name="input">/views/userLogin.jsp</result>
-			<result name="success">/views/dailyReportSubmit.jsp</result>
+			<result name="usr">/views/dailyReportSubmit.jsp</result>
+			<result name="mgr">/views/serviceCentreRegist.jsp</result>
 			<result name="error">/views/userLogin.jsp</result>
 		</action>
 		

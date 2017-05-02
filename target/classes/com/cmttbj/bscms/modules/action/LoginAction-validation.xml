@@ -7,7 +7,7 @@
  
 <validators>
 	<!-- 校验Action的userInfo.username属性 -->
-	<field name="userInfo.username">
+	<field name="managerInfo.username">
 		<!-- 指定userInfo.username属性必须满足必填规则-->
 		<field-validator type="requiredstring" short-circuit="true">
 			<param name="trim">true</param>
@@ -20,7 +20,7 @@
 		</field-validator>
 	</field>
 	<!-- 校验Action的userInfo.password属性 -->
-	<field name="userInfo.password">
+	<field name="managerInfo.password">
 		<!-- 指定userInfo.password属性必须满足必填规则-->
 		<field-validator type="requiredstring" short-circuit="true">
 			<param name="trim">true</param>

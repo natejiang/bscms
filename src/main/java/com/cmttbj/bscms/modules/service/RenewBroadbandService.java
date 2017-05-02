@@ -3,7 +3,6 @@ package com.cmttbj.bscms.modules.service;
 import java.util.Date;
 import java.util.List;
 
-import com.cmttbj.bscms.modules.entity.NewBroadband;
 import com.cmttbj.bscms.modules.entity.RenewBroadband;
 import com.cmttbj.bscms.modules.entity.ServiceCentre;
 

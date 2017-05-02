@@ -5,8 +5,8 @@ import java.util.List;
 import com.cmttbj.bscms.modules.entity.UserInfo;
 
 public interface UserInfoService {
-	public List<UserInfo> validLogin(String name,String pass);
-	public int addUserInfo(UserInfo userInfo);
+	int addUserInfo(UserInfo userInfo);
+	List<UserInfo> validLogin(UserInfo userInfo);
 	
 	
 }

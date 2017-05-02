@@ -34,5 +34,8 @@
 			p:customerDao-ref="customerDao"/>
 		<bean id="mobileProductService" class="com.cmttbj.bscms.modules.service.impl.MobileProductServiceImpl"
 			p:mobileProductDao-ref="mobileProductDao"/>
+		<bean id="managerInfoService" class="com.cmttbj.bscms.modules.service.impl.ManagerInfoServiceImpl"
+			p:managerInfoDao-ref="managerInfoDao"
+			p:userInfoDao-ref="userInfoDao"/>
 						 
 </beans>

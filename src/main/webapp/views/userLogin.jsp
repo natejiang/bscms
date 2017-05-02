@@ -22,9 +22,9 @@
 				    <form action="/bscms/views/process_login" method="post">
 				    	<fieldset>      
 							<label>用户</label>
-						    <input type="text" name="userInfo.username" />					    						    
+						    <input type="text" name="managerInfo.username" />					    						    
 						    <label>密码</label>
-						    <input type="text" name="userInfo.password" />						       
+						    <input type="text" name="managerInfo.password" />						       
 						    <div>
 						    	<input type="submit" value="登陆" />
 						    </div> 

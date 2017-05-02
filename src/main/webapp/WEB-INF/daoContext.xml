@@ -29,5 +29,7 @@
 			p:sessionFactory-ref="sessionFactory" />
 		<bean id="dailyReportDao" class="com.cmttbj.bscms.modules.dao.impl.DailyReportDaoHibernate4"
 			p:sessionFactory-ref="sessionFactory"/>
+		<bean id="managerInfoDao" class="com.cmttbj.bscms.modules.dao.impl.ManagerInfoDaoHibernate4"
+			p:sessionFactory-ref="sessionFactory" />
 							 
 </beans>

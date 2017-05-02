@@ -15,5 +15,5 @@ public interface UserInfoDao extends BaseDao<UserInfo>{
 	//分页获取实体按序号排序
 	List<UserInfo> findByPageOrderById(Class<UserInfo> entityClazz,int pageNo,int pageSize);
 	//获取实体根据用户名和密码
-	List<UserInfo> findByUsernameAndPassword(Class<UserInfo> entityClazz, String username, String password);
+	List<UserInfo> findByUsernameAndPassword(UserInfo userInfo);
 }

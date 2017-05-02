@@ -22,8 +22,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public List<UserInfo> validLogin(String username, String password) {
-		List<UserInfo> list = userInfoDao.findByUsernameAndPassword(UserInfo.class, username, password);
+	public List<UserInfo> validLogin(UserInfo userInfo) {
+		List<UserInfo> list = userInfoDao.findByUsernameAndPassword(userInfo);
 			return list;		
 	}
 	@Override
@@ -31,6 +31,4 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userInfoDao.save(userInfo);
 		return 0;
 	}
-
-
 }
