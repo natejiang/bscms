@@ -9,8 +9,48 @@
 	<title>登陆-北京铁通宽带服务中心管理系统</title>
 	<link rel="stylesheet" type="text/css" href="css/theme.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 在键盘按下并释放及提交后验证提交表单
+	  $("#form").validate({
+		  rules: 
+		  {
+	      	"managerInfo.username": 
+	        {
+		    	required: true,
+		        minlength: 4
+		    },
+		    "managerInfo.password": 
+		    {
+		        required: true,
+		        minlength: 4
+		    },
+		  },
+		  messages: 
+		  {
+		    "managerInfo.username": 
+		    {
+		        required: "请输入用户名",
+		        minlength: "用户名长度不能小于4个字符"
+		    },
+		    "managerInfo.password": 
+		    {
+		        required: "请输入密码",
+		        minlength: "密码长度不能小于4个字符"
+		     },
+		  }
+		});
+	});
+</script>
+<style>
+.error{
+	color:red;
+}
+</style>
 </head>
-
 <body>
 	<div id="container">	
 		<div id="header">		
@@ -19,14 +59,15 @@
 	    <div id="wrapper">
 	    	<div id="content">
 	    		<div id="box">
-				    <form action="/bscms/views/process_login" method="post">
+				    <form id="form" action="/bscms/views/process_login" method="post">
 				    	<fieldset>      
 							<label>用户</label>
-						    <input type="text" name="managerInfo.username" />					    						    
+						    <input id="username" type="text" name="managerInfo.username" />	
+						    <br />	    						    
 						    <label>密码</label>
-						    <input type="text" name="managerInfo.password" />						       
+						    <input id="password" name="managerInfo.password" type="password"/>						 					       
 						    <div>
-						    	<input type="submit" value="登陆" />
+						    	<input id="button1" type="submit" value="登陆" />
 						    </div> 
 					    </fieldset>
 				    </form>
@@ -36,5 +77,4 @@
 	    </div>
 	</div>
 </body>
-
 </html>

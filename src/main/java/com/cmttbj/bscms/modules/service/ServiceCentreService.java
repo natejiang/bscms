@@ -13,4 +13,5 @@ public interface ServiceCentreService {
 	 */
 	int addServiceCentre(ServiceCentre serviceCentre);
 	List<ServiceCentre> findServiceCentreById(Integer serviceCentre_id);
+	List<ServiceCentre> findAll();
 }

@@ -316,7 +316,10 @@ form#form input {
 	margin-bottom:5px;
 }
 form#form select {
-	margin-left:5px;
+	font-size:12px;
+	font-weight:bold;
+	padding:3px;
+	margin-bottom:5px;
 	width:100px;
 }
 form#form textarea {

@@ -27,7 +27,7 @@
                 	<li><a href="#">通知管理 </a></li>
                 	<li class="current"><a href="#">数据统计 </a></li>
                 	<li><a href="/bscms/views/page_userRegist">用户管理 </a></li>
-                	<li><a href="#">服务中心管理</a></li>
+                	<li><a href="/bscms/views/page_serviceCentreRegist">服务中心管理</a></li>
                     <li><a href="#">个人设置</a></li>
               	</ul>
          	 </div>

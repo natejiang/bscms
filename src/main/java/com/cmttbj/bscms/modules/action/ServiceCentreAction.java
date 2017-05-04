@@ -1,7 +1,10 @@
 package com.cmttbj.bscms.modules.action;
 
+import java.util.List;
+
 import com.cmttbj.bscms.modules.entity.ServiceCentre;
 import com.cmttbj.bscms.modules.service.ServiceCentreService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ServiceCentreAction extends ActionSupport {
@@ -37,6 +40,9 @@ public class ServiceCentreAction extends ActionSupport {
 
 	public String add() throws Exception{
 		serviceCentreService.addServiceCentre(serviceCentre);
+		ActionContext ctx = ActionContext.getContext();
+		List<ServiceCentre> list = serviceCentreService.findAll();
+		ctx.getApplication().put("serviceCentreList",list);
 		return SUCCESS;	
 	}
 }

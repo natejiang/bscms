@@ -87,6 +87,5 @@ public class CustomerDaoHibernate4 extends BaseDaoHibernate4<Customer>
 				.setParameter("1", begin)
 				.list();
 	}
-
-
+	
 }

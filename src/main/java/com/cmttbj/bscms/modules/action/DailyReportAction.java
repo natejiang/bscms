@@ -159,8 +159,7 @@ public class DailyReportAction extends ActionSupport {
 	{
 		DailyReport dailyReport = new DailyReport();
 		ActionContext ctx = ActionContext.getContext();	
-		serviceCentreId = (Integer)ctx.getSession().get("serviceCentreId");	
-		serviceCentre = serviceCentreService.findServiceCentreById(serviceCentreId).get(0);
+		serviceCentre = (ServiceCentre) ctx.getSession().get("serviceCentre");	
 		customer.setServiceCentre(serviceCentre);
 		dailyReport.setCustomer(customer);		
 		doorToDoor.setServiceCentre(serviceCentre);

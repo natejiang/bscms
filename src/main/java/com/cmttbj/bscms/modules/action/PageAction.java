@@ -19,24 +19,25 @@ public class PageAction extends ActionSupport
 
 	public void setPage(String page) {
 		this.page = page;
-	}
-	
+	}	
 	public String dailyReportSubmit() throws Exception
 	{
 		return SUCCESS;
-	}
-	
+	}	
 	public String dailyReportDashboard() throws Exception
 	{
 		return SUCCESS;
-	}
-	
+	}	
 	public String serviceCentreRegist() throws Exception
 	{
 		return SUCCESS;
+	}	
+	public String userRegist() throws Exception
+	{
+		return SUCCESS;
 	}
-	
-	public String userRegist() throws Exception{
+	public String managerRegist() throws Exception
+	{
 		return SUCCESS;
 	}
 }

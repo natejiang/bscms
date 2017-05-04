@@ -12,8 +12,9 @@
             http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 			
-		<!-- 配置Action及其依赖 -->		
-		<bean id="dailyReportAction" class="com.cmttbj.bscms.modules.action.DailyReportAction"
+		<!-- 配置Action及其依赖 -->	
+		<!-- spring 默认scope 是单例模式,scope="prototype"（多例模式）保证每次请求都创建一个Action对象 -->	
+		<bean id="dailyReportAction" class="com.cmttbj.bscms.modules.action.DailyReportAction" scope="prototype"
 			p:dailyReportService-ref="dailyReportService"
 			p:serviceCentreService-ref="serviceCentreService" 
 			p:newBroadbandService-ref="newBroadbandService"
@@ -21,12 +22,15 @@
 			p:doorToDoorService-ref="doorToDoorService"
 			p:mobileProductService-ref="mobileProductService"
 			p:customerService-ref="customerService"/> 
-		<bean id="loginAction" class="com.cmttbj.bscms.modules.action.LoginAction"
-			p:managerInfoService-ref="managerInfoService" /> 
-		<bean id="serviceCentreAction" class="com.cmttbj.bscms.modules.action.ServiceCentreAction"
+		<bean id="loginAction" class="com.cmttbj.bscms.modules.action.LoginAction" scope="prototype"
+			p:managerInfoService-ref="managerInfoService"
+			p:userInfoService-ref="userInfoService" /> 
+		<bean id="serviceCentreAction" class="com.cmttbj.bscms.modules.action.ServiceCentreAction" scope="prototype"
 			p:serviceCentreService-ref="serviceCentreService" /> 
-		<bean id="userInfoAction" class="com.cmttbj.bscms.modules.action.UserInfoAction"
+		<bean id="userInfoAction" class="com.cmttbj.bscms.modules.action.UserInfoAction" scope="prototype"
 			p:userInfoService-ref="userInfoService"
 			p:serviceCentreService-ref="serviceCentreService" /> 
-		<bean id="pageAction" class="com.cmttbj.bscms.modules.action.PageAction" /> 
+		<bean id="pageAction" class="com.cmttbj.bscms.modules.action.PageAction" scope="prototype"/> 
+		<bean id="excelAction" class="com.cmttbj.bscms.modules.action.ExcelAction" scope="prototype"
+			p:customerService-ref="customerService"/> 
 </beans>

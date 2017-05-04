@@ -26,7 +26,7 @@
 			
 		<!-- 定义HIbernate的SessionFactory,SessionFactory需要依赖数据源, 注入dataSource -->
 		<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-			p:dataSource-ref="dataSource">
+			p:dataSource-ref="dataSource" >
 			<!-- annotatedClasses用来列出全部持久化类 -->
 			<property name="annotatedClasses">
 				<list>

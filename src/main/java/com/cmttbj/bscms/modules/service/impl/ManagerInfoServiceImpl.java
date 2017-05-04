@@ -3,7 +3,6 @@ package com.cmttbj.bscms.modules.service.impl;
 import com.cmttbj.bscms.modules.dao.ManagerInfoDao;
 import com.cmttbj.bscms.modules.dao.UserInfoDao;
 import com.cmttbj.bscms.modules.entity.ManagerInfo;
-import com.cmttbj.bscms.modules.entity.UserInfo;
 import com.cmttbj.bscms.modules.service.ManagerInfoService;
 /**
  * 

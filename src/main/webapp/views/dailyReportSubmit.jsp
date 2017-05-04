@@ -37,7 +37,7 @@
                 <ul>
 					<li><a href="/bscms/views/dailyReport_dailyReportSubmit" class="useradd">提交数据</a></li>
 					<li><a href="/bscms/views/dailyReport_show" class="search">历史数据</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
                 </ul>
             </div>
       	</div>
@@ -124,10 +124,11 @@
                         <input name="customer.customerQuantity" type="text" tabindex="1" />                                         
                       </fieldset>                         
                       <div align="center">
-	                  	<input id="button1" type="submit" value="提交 "  /> 
+	                  	<input id="button1" type="submit" value="提交 " /> 
 	                    <input id="button2" type="submit" value="重置"/>
                       </div>                                   
                     </form>
+                    <label><s:fielderror/></label>
                 </div>
             </div>          
       </div>

@@ -30,5 +30,15 @@ public class ServiceCentreServiceImpl implements ServiceCentreService {
 		return list;
 	}
 
+	@Override
+	public List<ServiceCentre> findAll() {
+		List<ServiceCentre> list = serviceCentreDao.findAll();
+		for (int i = 0;i < list.size();i ++)
+		{
+			System.out.println(list.get(i).getServiceCentreId() + list.get(i).getServiceCentreName());
+		}
+		return list;
+	}
+
 
 }

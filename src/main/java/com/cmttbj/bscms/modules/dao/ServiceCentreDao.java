@@ -16,4 +16,6 @@ public interface ServiceCentreDao extends BaseDao<ServiceCentre>{
 	List<ServiceCentre> findByPageOrderById(Class<ServiceCentre> entityClazz,int pageNo,int pageSize);
 	//获取实体按序号
 	List<ServiceCentre> findById(Class<ServiceCentre> entityClazz, Integer serviceCentre_id);
+	
+	List<ServiceCentre> findAll();
 }

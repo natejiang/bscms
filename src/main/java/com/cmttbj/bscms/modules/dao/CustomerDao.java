@@ -19,7 +19,5 @@ public interface CustomerDao extends BaseDao<Customer>,DailyReportCommonDao<Cust
 	//获取所有实体按序号排序
 	List<Customer> findAllOrderById(Class<Customer> entityClazz);	
 	//分页获取实体按序号排序
-	List<Customer> findByPageOrderById(Class<Customer> entityClazz,int pageNo,int pageSize);
-	
-	
+	List<Customer> findByPageOrderById(Class<Customer> entityClazz,int pageNo,int pageSize);		
 }

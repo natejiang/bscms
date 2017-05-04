@@ -25,4 +25,9 @@ public class ServiceCentreDaoHibernate4 extends BaseDaoHibernate4<ServiceCentre>
 		System.out.println(serviceCentreId);
 		return find("select en from " + entityClazz.getSimpleName() + " en where en.serviceCentreId = ?", serviceCentreId);
 	}
+
+	@Override
+	public List<ServiceCentre> findAll() {		
+		return find("select s from ServiceCentre s order by s.id desc");
+	}
 }

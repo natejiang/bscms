@@ -35,7 +35,7 @@
                 <ul>
                     <li><a href="/bscms/views/page_dailyReportSubmit" class="useradd">提交数据</a></li>
 					<li><a href="#" class="search">历史数据</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
                 </ul>
             </div>
       </div>

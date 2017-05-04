@@ -26,7 +26,7 @@
     		<div id="topmenu">
             	<ul>
                 	<li><a href="#">通知管理 </a></li>
-                	<li><a href="#">数据统计 </a></li>
+                	<li><a href="/bscms/views/dailyReport_showAll">数据统计 </a></li>
                 	<li class="current"><a href="#">用户管理 </a></li>
                 	<li><a href="/bscms/views/page_serviceCentreRegist">服务中心管理</a></li>
                     <li><a href="#">个人设置</a></li>
@@ -36,9 +36,10 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-					<li><a href="#" class="useradd">新增用户</a></li>
+					<li><a href="/bscms/views/page_userRegist" class="useradd">新增用户</a></li>
 					<li><a href="#" class="group">管理用户</a></li>
 					<li><a href="#" class="search">查找用户</a></li>
+					<li><a href="#" class="useradd">新增管理员</a></li>
 					<li>当前用户是<s:property value="#session.service_centre_name"/><s:property value="#session.name"/><a href="/bscms/views/process_logout">logout</a></li>
                 </ul>
             </div>

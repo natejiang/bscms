@@ -1,8 +1,12 @@
 package com.cmttbj.bscms.modules.action;
 
+import java.util.List;
+
 import com.cmttbj.bscms.common.config.WebConstant;
 import com.cmttbj.bscms.modules.entity.ManagerInfo;
+import com.cmttbj.bscms.modules.entity.UserInfo;
 import com.cmttbj.bscms.modules.service.ManagerInfoService;
+import com.cmttbj.bscms.modules.service.UserInfoService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -22,8 +26,15 @@ public class LoginAction extends ActionSupport{
 	
 	private ManagerInfo managerInfo;
 	private ManagerInfoService managerInfoService;
-	
+	private UserInfoService userInfoService;
 
+	public UserInfoService getUserInfoService() {
+		return userInfoService;
+	}
+
+	public void setUserInfoService(UserInfoService userInfoService) {
+		this.userInfoService = userInfoService;
+	}
 
 	public ManagerInfo getManagerInfo() {
 		return managerInfo;
@@ -47,12 +58,15 @@ public class LoginAction extends ActionSupport{
 		System.out.println(result);
 		if(result == LOGIN_USR)
 		{
-			ctx.getSession().put(WebConstant.USER, managerInfo.getUsername());
-			addActionMessage("OK");
+			List<UserInfo> list = userInfoService.validLogin(managerInfo);
+			UserInfo userInfo = list.get(0);
+			ctx.getSession().put(WebConstant.USERNAME, userInfo.getUsername());
+			ctx.getSession().put(WebConstant.SER_CENTRE, userInfo.getServiceCentre());
+			ctx.getSession().put(WebConstant.FULLNAME, userInfo.getFullname());
 			return USR_RESULT;
 		}else if(result == LOGIN_MGR)
 		{
-			ctx.getSession().put(WebConstant.USER, managerInfo.getUsername());
+			ctx.getSession().put(WebConstant.USERNAME, managerInfo.getUsername());			
 			return MGR_RESULT;
 		}else
 		{
@@ -62,7 +76,7 @@ public class LoginAction extends ActionSupport{
 	}	
 	public String logout() throws Exception{
 		ActionContext ctx = ActionContext.getContext();
-		ctx.getSession().put(WebConstant.USER, "");
-		return LOGIN;
+		ctx.getSession().put(WebConstant.USERNAME, "");
+		return ERROR;
 	}
 }

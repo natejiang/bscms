@@ -24,7 +24,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public List<UserInfo> validLogin(UserInfo userInfo) {
 		List<UserInfo> list = userInfoDao.findByUsernameAndPassword(userInfo);
-			return list;		
+		return list;		
 	}
 	@Override
 	public int addUserInfo(UserInfo userInfo) {
