@@ -16,8 +16,8 @@
 		<!-- 定义数据源Bean,使用C3P0数据源实现,并注入数据源的必要信息 -->
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 			p:driverClass="com.mysql.jdbc.Driver"
-			p:jdbcUrl="jdbc:mysql://localhost/bscms"
-			p:user="root"
+			p:jdbcUrl="jdbc:mysql://192.168.122.9/bscms"
+			p:user="jiangnan"
 			p:password="Tanker20120828"
 			p:maxPoolSize="40"
 			p:minPoolSize="2"

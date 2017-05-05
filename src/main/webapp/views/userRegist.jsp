@@ -10,6 +10,63 @@
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 在键盘按下并释放及提交后验证提交表单
+	  $("#form").validate({		
+		  errorElement: "span",
+		  rules: 
+		  {
+	      	"userInfo.username": 
+	        {
+		    	required: true,
+		        minlength: 8
+		    },
+		    "userInfo.password": 
+		    {
+		        required: true,
+		        minlength: 8
+		    },
+		    "userInfo.fullname": 
+		    {
+		        required: true,
+		        minlength: 8
+		    },
+		  },
+		  messages: 
+		  {
+		    "userInfo.username": 
+		    {
+		        required: "请输入用户名",
+		        minlength: "用户名长度不能小于8个字符"
+		    },
+		    "userInfo.password": 
+		    {
+		        required: "请输入密码",
+		        minlength: "密码长度不能小于8个字符"
+		     },
+		     "userInfo.fullname": 
+		    {
+		        required: "请输入姓名",
+		        minlength: "密码长度不能小于8个字符"
+		     },
+		     
+		  }
+		});
+	
+	  $(".cancel").click(function() {
+			validator.resetForm();
+		});
+	});
+</script>
+<style>
+.error{
+	color:red;
+}
+</style>
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
