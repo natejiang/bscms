@@ -9,10 +9,19 @@
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script src="./js/dailyReportDashboard-validation.js"type="text/javascript"></script>
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
 </script>
+<style>
+.error{
+	color:red;
+}
+</style>
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->

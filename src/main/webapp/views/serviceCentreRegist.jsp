@@ -10,15 +10,51 @@
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 在键盘按下并释放及提交后验证提交表单
+	  $("#form").validate({		
+		  errorElement: "span",
+		  rules: 
+		  {
+			"serviceCentre.serviceCentreName": 
+	        {
+		    	required: true,
+		        minlength: 4
+		    },
+		  },
+		  messages: 
+		  {
+			"serviceCentre.serviceCentreName": 
+		    {
+		        required: "请输入服务站名",
+		        minlength: "长度不能小于4个字符"
+		    },
+		  }
+		});
+	
+	  $(".cancel").click(function() {
+			validator.resetForm();
+		});
+	});
+</script>
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
 </script>
+<style>
+.error{
+	color:red;
+}
+</style>
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
 </head>
-
+<s:if test="#session.username!=''">
 <body>
 	<div id="container">
     	<div id="header">
@@ -89,4 +125,5 @@
 	  </div>
 </div>
 </body>
+</s:if>
 </html>

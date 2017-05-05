@@ -9,6 +9,7 @@
 <title>日报仪表 - 北京铁通宽带服务中心管理系统</title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
@@ -17,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
 </head>
-
+<s:if test="#session.username!=''">
 <body>
 	<div id="container">
     	<div id="header">
@@ -264,4 +265,5 @@
         </div>
 </div>
 </body>
+</s:if>
 </html>

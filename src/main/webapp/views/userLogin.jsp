@@ -15,7 +15,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	// 在键盘按下并释放及提交后验证提交表单
-	  $("#form").validate({
+	  $("#form").validate({		
+		  errorElement: "span",
 		  rules: 
 		  {
 	      	"managerInfo.username": 
@@ -43,6 +44,10 @@ $(document).ready(function() {
 		     },
 		  }
 		});
+	
+	  $(".cancel").click(function() {
+			validator.resetForm();
+		});
 	});
 </script>
 <style>
@@ -63,9 +68,9 @@ $(document).ready(function() {
 				    	<fieldset>      
 							<label>用户</label>
 						    <input id="username" type="text" name="managerInfo.username" />	
-						    <br />	    						    
+						    <br />    						    
 						    <label>密码</label>
-						    <input id="password" name="managerInfo.password" type="password"/>						 					       
+						    <input id="password" type="password" name="managerInfo.password" />						 					       
 						    <div>
 						    	<input id="button1" type="submit" value="登陆" />
 						    </div> 

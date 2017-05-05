@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
 </head>
-
+<s:if test="#session.username!=''">
 <body>
 	<div id="container">
     	<div id="header">
@@ -84,4 +84,5 @@
 	  </div>
 </div>
 </body>
+</s:if>
 </html>
