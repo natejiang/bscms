@@ -27,11 +27,11 @@ public class MobileProduct implements java.io.Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="sim_quantity",length=10,nullable=false,columnDefinition="INT default 0")
-	private Integer simQuantity;
+	private Integer simQuantity = 0;
 	@Column(name="terminal_quantity",length=10,nullable=false,columnDefinition="INT default 0")
-	private Integer terminalQuantity;
+	private Integer terminalQuantity = 0;
 	@Column(name="television_quantity",length=10,nullable=false,columnDefinition="INT default 0")
-	private Integer televisionQuantity;
+	private Integer televisionQuantity = 0;
 	@ManyToOne(targetEntity=ServiceCentre.class)
 	@JoinColumn(name="service_centre_id")
 	private ServiceCentre serviceCentre;

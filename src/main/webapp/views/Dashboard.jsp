@@ -43,7 +43,7 @@
 					<li><a href="/bscms/views/dailyReport_showCompany?company=tongshun" class="">通顺</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=jiaoqv" class="">郊区</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=changyan" class="">昌延</a></li>
-					<li>当前用户是<s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.fullname"/><a href="/bscms/views/process_logout">用户注销</a></li>
                 </ul>
             </div>
       </div>

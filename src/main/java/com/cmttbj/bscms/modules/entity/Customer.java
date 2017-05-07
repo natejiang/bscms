@@ -27,7 +27,7 @@ public class Customer implements java.io.Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="customer_quantity",length=10,nullable=false,columnDefinition="INT default 0")
-	private Integer customerQuantity;
+	private Integer customerQuantity = 0;
 	@ManyToOne(targetEntity=ServiceCentre.class)
 	@JoinColumn(name="service_centre_id")
 	private ServiceCentre serviceCentre;

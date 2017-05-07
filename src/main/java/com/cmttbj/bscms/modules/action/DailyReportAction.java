@@ -201,7 +201,12 @@ public class DailyReportAction extends ActionSupport {
 		//展示该服务中心昨天新装宽带数据
 		List<NewBroadband> listNewBroadband = newBroadbandService
 				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
-		ctx.put("newBroadband", listNewBroadband.get(0));		
+		if(listNewBroadband.isEmpty()){
+			newBroadband = new NewBroadband();
+			ctx.put("newBroadband", newBroadband);
+		}else{
+			ctx.put("newBroadband", listNewBroadband.get(0));
+		}				
 		//展示该服务中心月累计新装宽带数据,注意字符串数组顺序问题
 		List<String> sumNewBroadbandMonth = newBroadbandService
 				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
@@ -210,7 +215,12 @@ public class DailyReportAction extends ActionSupport {
 		//展示该服务中心昨天续费宽带数据
 		List<RenewBroadband> listRenewBroadband = renewBroadbandService
 				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
-		ctx.put("renewBroadband", listRenewBroadband.get(0));
+		if(listRenewBroadband.isEmpty()){
+			renewBroadband = new RenewBroadband();
+			ctx.put("renewBroadband", renewBroadband);
+		}else{
+			ctx.put("renewBroadband", listRenewBroadband.get(0));
+		}		
 		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
 		List<String> sumRenewBroadbandMonth = newBroadbandService
 				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
@@ -219,7 +229,12 @@ public class DailyReportAction extends ActionSupport {
 		//展示该服务中心昨天客流量宽带数据
 		List<Customer> listCustomer = customerService
 				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
-		ctx.put("customer", listCustomer.get(0));
+		if(listCustomer.isEmpty()){
+			customer = new Customer();
+			ctx.put("customer", customer);
+		}else{
+			ctx.put("customer", listCustomer.get(0));
+		}		
 		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
 		List<String> sumCustomerMonth = customerService
 				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
@@ -229,7 +244,12 @@ public class DailyReportAction extends ActionSupport {
 		//展示该服务中心昨天上门工作量数据
 		List<DoorToDoor> listDoorToDoor = doorToDoorService
 				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
-		ctx.put("doorToDoor", listDoorToDoor.get(0));
+		if(listDoorToDoor.isEmpty()){
+			doorToDoor = new DoorToDoor();
+			ctx.put("doorToDoor", doorToDoor);
+		}else{
+			ctx.put("doorToDoor", listDoorToDoor.get(0));
+		}		
 		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
 		List<String> sumDoorToDoorMonth = doorToDoorService.sumByDatesAndServiceCentre(end, begin,serviceCentre);				
 		ctx.put("sumDoorToDoorMonth", sumDoorToDoorMonth);	
@@ -237,7 +257,12 @@ public class DailyReportAction extends ActionSupport {
 		//展示该服务中心昨天移动产品数据
 		List<MobileProduct> listMobileProduct = mobileProductService
 				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
-		ctx.put("mobileProduct", listMobileProduct.get(0));
+		if(listMobileProduct.isEmpty()){
+			mobileProduct = new MobileProduct();
+			ctx.put("mobileProduct",mobileProduct);
+		}else{
+			ctx.put("mobileProduct", listMobileProduct.get(0));
+		}		
 		//展示该服务中心月累计移动产品数据,注意字符串数组顺序问题
 		List<String> sumMobileProductMonth = mobileProductService.sumByDatesAndServiceCentre(end, begin, serviceCentre);
 		ctx.put("sumMobileProduct", sumMobileProductMonth);

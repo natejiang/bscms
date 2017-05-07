@@ -75,7 +75,7 @@ $(document).ready(function() {
 					<li><a href="#" class="useradd">新增</a></li>
 					<li><a href="#" class="group">管理</a></li>
 					<li><a href="#" class="search">查找</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">用户注销</a></li>
                 </ul>
             </div>
       	</div>

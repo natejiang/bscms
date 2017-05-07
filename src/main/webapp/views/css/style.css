@@ -344,6 +344,9 @@ form#form #button1, form#form #button2 {
 form#form #button1:hover, form#form #button2:hover {
 	background-position:center left;
 }
+form#form #login {
+	margin-left:102px;
+}
 
 /*********************
 	Icons

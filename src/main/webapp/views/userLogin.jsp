@@ -73,7 +73,7 @@ $(document).ready(function() {
 						    <br />    						    
 						    <label>密码</label>
 						    <input id="password" type="password" name="managerInfo.password" />						 					       
-						    <div>
+						    <div id="login">
 						    	<input id="button1" type="submit" value="登陆" />
 						    </div> 
 					    </fieldset>
