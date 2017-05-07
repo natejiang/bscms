@@ -26,7 +26,7 @@ public class Customer implements java.io.Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="customer_quantity",length=10)
+	@Column(name="customer_quantity",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer customerQuantity;
 	@ManyToOne(targetEntity=ServiceCentre.class)
 	@JoinColumn(name="service_centre_id")
@@ -37,7 +37,6 @@ public class Customer implements java.io.Serializable{
 	public Customer()
 	{		
 	}
-
 	public Customer(Integer id, Integer customerQuantity, ServiceCentre serviceCentre, Date date) {
 		super();
 		this.id = id;
@@ -77,6 +76,5 @@ public class Customer implements java.io.Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 	
 }

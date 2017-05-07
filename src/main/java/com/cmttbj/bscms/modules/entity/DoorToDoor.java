@@ -26,9 +26,9 @@ public class DoorToDoor implements java.io.Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="installed_quantity",length=10)
+	@Column(name="installed_quantity",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer installedQuantity;
-	@Column(name="repaired_quantity",length=10)
+	@Column(name="repaired_quantity",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer repairedQuantity;
 	@ManyToOne(targetEntity=ServiceCentre.class)
 	@JoinColumn(name="service_centre_id")

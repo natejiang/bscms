@@ -20,6 +20,9 @@ public interface DailyReportCommonDao<T> {
 			, ServiceCentre serviceCentre);
 	//获取实体按日期和公司
 	List<T> findByDatesAndCompany(Class<T> entityClazz, Date end ,Date begin, String company);
+	//求和实体属性根据日期和服务中心
+	List<Object> sumByDatesAndCompany(Class<T> entityClazz, Date end, Date begin
+			, String company);
 	//获取实体按日期
 	List<T> findByDates(Class<T> entityClazz, Date end ,Date begin);
 	//求和实体属性根据日期

@@ -84,4 +84,19 @@ public class MobileProductDaoHibernate4 extends BaseDaoHibernate4<MobileProduct>
 			.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDatesAndCompany(Class<MobileProduct> entityClazz, Date end, Date begin,
+			String company) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.simQuantity)"				
+				+ ",sum(en.terminalQuantity)"
+				+ ",sum(en.televisionQuantity) from " + entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1 and en.serviceCentre.company = ?2" 
+				+ " order by en.date desc")
+			.setParameter("0", end)
+			.setParameter("1", begin)
+			.setParameter("2", company)
+			.list();
+	}
+
 }

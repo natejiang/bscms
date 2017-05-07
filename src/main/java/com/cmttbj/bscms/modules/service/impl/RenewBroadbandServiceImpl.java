@@ -21,7 +21,7 @@ public class RenewBroadbandServiceImpl implements RenewBroadbandService {
 	}
 
 	@Override
-	public List<RenewBroadband> searchRenewBroadbandByDatesAndServiceCentre(Date end, Date begin,
+	public List<RenewBroadband> searchByDatesAndServiceCentre(Date end, Date begin,
 			ServiceCentre serviceCentre) {
 		
 		return (List<RenewBroadband>) renewBroadbandDao
@@ -29,33 +29,62 @@ public class RenewBroadbandServiceImpl implements RenewBroadbandService {
 	}
 
 	@Override
-	public List<RenewBroadband> searchRenewBroadbandBydates(Date end, Date begin) {
+	public List<RenewBroadband> searchByDates(Date end, Date begin) {
 		List<RenewBroadband> list = renewBroadbandDao.findByDates(RenewBroadband.class, end, begin);
 		return list;
 	}
 
 	@Override
-	public List<String> sumRenewBroadbandByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
+	public List<String> sumByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
 		List<Object> objsList = renewBroadbandDao.sumByDatesAndServiceCentre(RenewBroadband.class, end, begin, serviceCentre);
 		Object[] objs = (Object[]) objsList.get(0);
 		List<String> list = new ArrayList<>();
 		for(int i = 0;i < objs.length; i ++)
 		{
-			list.add(i, objs[i].toString());
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}
 		}
 		return list;
 	}
 
 	@Override
-	public List<String> sumRenewBroadbandByDates(Date end, Date begin) {
-		List<Object> objsList = renewBroadbandDao.sumByDates(RenewBroadband.class, end, begin);
-		Object[] objs = (Object[]) objsList.get(0);
+	public List<String> sumByDates(Date end, Date begin) {
 		List<String> list = new ArrayList<String>() ;
-		for(int i = 0;i < objs.length; i ++)
-		{
-			list.add(i, objs[i].toString());
-		}
+		List<Object> objsList = renewBroadbandDao.sumByDates(RenewBroadband.class, end, begin);	
+		Object[] objs = (Object[]) objsList.get(0);
+		for (int i = 0; i < objs.length; i ++){
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}			
+		}	
+		return list;		
+	}
+
+	@Override
+	public List<RenewBroadband> searchByDatesAndCompany(Date end, Date begin, String company) {
+		List<RenewBroadband> list = renewBroadbandDao
+				.findByDatesAndCompany(RenewBroadband.class, end, begin, company);
 		return list;
 	}
 
+	@Override
+	public List<String> sumByDatesAndCompany(Date end, Date begin, String company) {
+		List<String> list = new ArrayList<String>() ;
+		List<Object> objsList = renewBroadbandDao
+				.sumByDatesAndCompany(RenewBroadband.class, end, begin, company);	
+		Object[] objs = (Object[]) objsList.get(0);
+		for (int i = 0; i < objs.length; i ++){
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}			
+		}	
+		return list;
+	}
 }

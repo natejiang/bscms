@@ -14,6 +14,65 @@
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
 </script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 在键盘按下并释放及提交后验证提交表单
+	  $("#form").validate({		
+		  errorElement: "span",
+		  rules: 
+		  {
+	      	"managerInfo.username": 
+	        {
+		    	required: true,
+		        minlength: 6,
+		        maxlength: 20,
+		    },
+		    "managerInfo.password": 
+		    {
+		        required: true,
+		        minlength: 6
+		    },
+		    "managerInfo.fullname": 
+		    {
+		        required: true,
+		        minlength: 2
+		    },
+		  },
+		  messages: 
+		  {
+		    "userInfo.username": 
+		    {
+		        required: "请输入用户名",
+		        minlength: "用户名长度不能小于6个字符",
+		        maxlength: "用户名长度不能大于20个字符",
+		    },
+		    "userInfo.password": 
+		    {
+		        required: "请输入密码",
+		        minlength: "密码长度不能小于6个字符"
+		     },
+		     "userInfo.fullname": 
+		    {
+		        required: "请输入姓名",
+		        minlength: "密码长度不能小于2个字符"
+		     },
+		     
+		  }
+		});
+	
+	  $(".cancel").click(function() {
+			validator.resetForm();
+		});
+	});
+</script>
+<style>
+.error{
+	color:red;
+}
+</style>
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->

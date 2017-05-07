@@ -57,6 +57,7 @@ $(document).ready(function() {
 </style>
 </head>
 <body>
+<s:debug/>
 	<div id="container">	
 		<div id="header">		
 	    	<h2>北京铁通宽带服务中心管理系统</h2>
@@ -65,7 +66,8 @@ $(document).ready(function() {
 	    	<div id="content">
 	    		<div id="box">
 				    <form id="form" action="/bscms/views/process_login" method="post">
-				    	<fieldset>      
+				    	<fieldset>   
+				    		<legend>用户登录<s:property value="tip"/></legend>  
 							<label>用户</label>
 						    <input id="username" type="text" name="managerInfo.username" />	
 						    <br />    						    

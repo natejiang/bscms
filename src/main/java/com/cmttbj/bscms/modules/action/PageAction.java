@@ -40,4 +40,8 @@ public class PageAction extends ActionSupport
 	{
 		return SUCCESS;
 	}
+	public String changePassword() throws Exception
+	{
+		return SUCCESS;
+	}
 }

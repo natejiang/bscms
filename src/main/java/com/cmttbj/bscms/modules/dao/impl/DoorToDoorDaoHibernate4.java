@@ -74,4 +74,17 @@ public class DoorToDoorDaoHibernate4 extends BaseDaoHibernate4<DoorToDoor>
 			.setParameter("1", begin)
 			.list();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDatesAndCompany(Class<DoorToDoor> entityClazz, Date end, Date begin,
+			String company) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.installedQuantity),sum(en.repairedQuantity) from " 
+				+ entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1 and en.serviceCentre.company = ?2" 
+				+ " order by en.date desc")
+			.setParameter("0", end)
+			.setParameter("1", begin)
+			.setParameter("2", company)
+			.list();
+	}
 }

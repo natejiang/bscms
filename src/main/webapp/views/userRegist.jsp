@@ -23,17 +23,18 @@ $(document).ready(function() {
 	      	"userInfo.username": 
 	        {
 		    	required: true,
-		        minlength: 8
+		        minlength: 6,
+		        maxlength: 20,
 		    },
 		    "userInfo.password": 
 		    {
 		        required: true,
-		        minlength: 8
+		        minlength: 6
 		    },
 		    "userInfo.fullname": 
 		    {
 		        required: true,
-		        minlength: 8
+		        minlength: 2
 		    },
 		  },
 		  messages: 
@@ -41,17 +42,18 @@ $(document).ready(function() {
 		    "userInfo.username": 
 		    {
 		        required: "请输入用户名",
-		        minlength: "用户名长度不能小于8个字符"
+		        minlength: "用户名长度不能小于6个字符",
+		        maxlength: "用户名长度不能大于20个字符",
 		    },
 		    "userInfo.password": 
 		    {
 		        required: "请输入密码",
-		        minlength: "密码长度不能小于8个字符"
+		        minlength: "密码长度不能小于6个字符"
 		     },
 		     "userInfo.fullname": 
 		    {
 		        required: "请输入姓名",
-		        minlength: "密码长度不能小于8个字符"
+		        minlength: "密码长度不能小于2个字符"
 		     },
 		     
 		  }
@@ -94,10 +96,10 @@ $(document).ready(function() {
             <div id="panel">
                 <ul>
 					<li><a href="/bscms/views/page_userRegist" class="useradd">新增用户</a></li>
-					<li><a href="#" class="group">管理用户</a></li>
-					<li><a href="#" class="search">查找用户</a></li>
 					<li><a href="/bscms/views/page_managerRegist" class="useradd">新增管理员</a></li>
-					<li>当前用户是<s:property value="#session.service_centre_name"/><s:property value="#session.name"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li><a href="#" class="group">管理用户</a></li>
+					<li><a href="#" class="search">查找用户</a></li>					
+					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
                 </ul>
             </div>
       	</div>

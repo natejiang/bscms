@@ -27,16 +27,16 @@
             	<ul>
                 	<li><a href="#">店面通知</a></li>
                 	<li class="current"><a href="#">数据统计</a></li>
-                    <li><a href="#">个人设置</a></li>
+                    <li><a href="/bscms/views/page_changePassword">个人设置</a></li>
               	</ul>
          	 </div>
       </div>
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                    <li><a href="/bscms/views/page_dailyReportSubmit" class="useradd">提交数据</a></li>
+                    <li><a href="/bscms/views/page_dailyReportSubmit" class="pagenew">提交数据</a></li>
 					<li><a href="#" class="search">历史数据</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">注销用户</a></li>
                 </ul>
             </div>
       </div>
@@ -74,7 +74,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-                            <s:subset source="#newBroadbandSum" start="0" count="4">
+                            <s:subset source="#sumNewBroadbandMonth" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -101,7 +101,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-                            <s:subset source="#newBroadbandSum" start="4" count="4">
+                            <s:subset source="#sumNewBroadbandMonth" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -132,7 +132,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-							<s:subset source="#renewBroadbandSum" start="0" count="4">
+							<s:subset source="#sumRenewBroadbandMonth" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -159,7 +159,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-							<s:subset source="#renewBroadbandSum" start="4" count="4">
+							<s:subset source="#sumRenewBroadbandMonth" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -207,7 +207,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-							<s:subset source="#doorToDoorSum" start="0" count="2">
+							<s:subset source="#sumDoorToDoorMonth" start="0" count="2">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -235,7 +235,7 @@
                             </s:iterator>
                             </tr>
                             <tr>
-							<s:subset source="#mobileProductSum" start="0" count="3">
+							<s:subset source="#sumMobileProductMonth" start="0" count="3">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>

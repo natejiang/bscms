@@ -35,9 +35,15 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                    <li><a href="/bscms/views/page_dailyReportSubmit" class="useradd">提交数据</a></li>
-					<li><a href="#" class="search">历史数据</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+                    <li><a href="/bscms/views/dailyReport_showAll" class="search">全部数据</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=centre" class="">中心区</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=south" class="">南区</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=north" class="">北区</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=chaoyang" class="">朝阳</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=tongshun" class="">通顺</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=jiaoqv" class="">郊区</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=changyan" class="">昌延</a></li>
+					<li>当前用户是<s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
                 </ul>
             </div>
       </div>
@@ -67,7 +73,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumNewBroadbandYestoday" start="0" count="4">
+							<s:subset source="#sumNewBroadbandYesterday" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -93,7 +99,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumNewBroadbandYestoday" start="4" count="4">
+							<s:subset source="#sumNewBroadbandYesterday" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -123,7 +129,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumRenewBroadbandYestoday" start="0" count="4">
+							<s:subset source="#sumRenewBroadbandYesterday" start="0" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -149,7 +155,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumRenewBroadbandYestoday" start="4" count="4">
+							<s:subset source="#sumRenewBroadbandYesterday" start="4" count="4">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -175,7 +181,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:iterator value="#sumCustomerYestoday" id="name">					
+							<s:iterator value="#sumCustomerYesterday" id="name">					
 								<td><s:property value="name"/></td>   
 							</s:iterator>
                             </tr>
@@ -198,7 +204,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumDoorToDoorYestoday" start="0" count="2">
+							<s:subset source="#sumDoorToDoorYesterday" start="0" count="2">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>
@@ -226,7 +232,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<s:subset source="#sumMobileProductYestoday" start="0" count="3">
+							<s:subset source="#sumMobileProductYesterday" start="0" count="3">
 							<s:iterator>
 								<td><s:property/></td>   
                             </s:iterator>

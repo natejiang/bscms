@@ -34,7 +34,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	//更新实体
 	@Override
 	public void update(T entity) {
-		getSessionFactory().getCurrentSession().saveOrUpdate(entity);;			
+		getSessionFactory().getCurrentSession().saveOrUpdate(entity);			
 	}
 	//删除实体
 	@Override

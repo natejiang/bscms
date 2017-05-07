@@ -36,12 +36,6 @@ public class CustomerDaoHibernate4 extends BaseDaoHibernate4<Customer>
 		String hql = "select en from " + entityClazz.getSimpleName() + " en" + " order by en.id desc";
 		return findByPage(hql,pageNo,pageSize);	
 	}
-	
-	@Override
-	public List<Customer> findByDateAndServiceCentreId(Class<Customer> entityClazz, Date date, ServiceCentre serviceCentre) {
-		return find("select en from " + entityClazz.getSimpleName() 
-			+ " en where en.date = ? and en.serviceCentre = ?", date, serviceCentre);
-	}
 
 	@Override
 	public List<Customer> findByDatesAndServiceCentre(Class<Customer> entityClazz, Date end,
@@ -65,12 +59,6 @@ public class CustomerDaoHibernate4 extends BaseDaoHibernate4<Customer>
 	}		
 
 	@Override
-	public List<Customer> findByDatesAndCompany(Class<Customer> entityClazz, Date end, Date begin, String company) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Customer> findByDates(Class<Customer> entityClazz, Date end, Date begin) {
 		return find("select en from " + entityClazz.getSimpleName() 
 			+ " en where en.date between ? and ?" + " order by en.date desc", end, begin);
@@ -85,6 +73,26 @@ public class CustomerDaoHibernate4 extends BaseDaoHibernate4<Customer>
 				+ " order by en.date desc")
 				.setParameter("0", end)
 				.setParameter("1", begin)
+				.list();
+	}
+	
+	@Override
+	public List<Customer> findByDatesAndCompany(Class<Customer> entityClazz, Date end, Date begin, String company) {
+		return find("select en from " + entityClazz.getSimpleName() 
+			+ " en where en.date between ? and ? and en.serviceCentre.company = ?" 
+			+ " order by en.date desc", end, begin, company);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDatesAndCompany(Class<Customer> entityClazz, Date end, Date begin, String company) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.customerQuantity) from " 
+				+ entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1 and en.serviceCentre.company = ?2" 
+				+ " order by en.date desc")
+				.setParameter("0", end)
+				.setParameter("1", begin)
+				.setParameter("2", company)
 				.list();
 	}
 	

@@ -37,16 +37,16 @@
             	<ul>
                 	<li><a href="#">店面通知</a></li>
                 	<li class="current"><a href="#">数据统计</a></li>
-                    <li><a href="#">个人设置</a></li>
+                    <li><a href="/bscms/views/page_changePassword">个人设置</a></li>
               	</ul>
          	 </div>
      	</div>
         <div id="top-panel">
             <div id="panel">
                 <ul>
-					<li><a href="/bscms/views/dailyReport_dailyReportSubmit" class="useradd">提交数据</a></li>
+					<li><a href="#" class="pagenew">提交数据</a></li>
 					<li><a href="/bscms/views/dailyReport_show" class="search">历史数据</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li>当前用户是<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">注销用户</a></li>
                 </ul>
             </div>
       	</div>

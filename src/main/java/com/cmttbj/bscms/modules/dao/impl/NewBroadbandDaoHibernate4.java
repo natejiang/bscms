@@ -92,5 +92,25 @@ public class NewBroadbandDaoHibernate4 extends BaseDaoHibernate4<NewBroadband>
 				.setParameter("0", end)
 				.setParameter("1", begin)
 				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> sumByDatesAndCompany(Class<NewBroadband> entityClazz, Date end, Date begin,
+			String company) {
+		return sessionFactory.getCurrentSession().createQuery("select sum(en.ihomeBroadbandQuantity20)"
+				+ ",sum(en.ihomeBroadbandQuantity30)"
+				+ ",sum(en.ihomeBroadbandQuantity50)"
+				+ ",sum(en.ihomeBroadbandQuantity100)"
+				+ ",sum(en.onlyBroadbandQuantity20)"
+				+ ",sum(en.onlyBroadbandQuantity30)"
+				+ ",sum(en.onlyBroadbandQuantity50)"
+				+ ",sum(en.onlyBroadbandQuantity100) from " + entityClazz.getSimpleName() 
+				+ " en where en.date between ?0 and ?1 and en.serviceCentre.company = ?2" 
+				+ " order by en.date desc")
+				.setParameter("0", end)
+				.setParameter("1", begin)
+				.setParameter("2", company)
+				.list();
 	}		
 }

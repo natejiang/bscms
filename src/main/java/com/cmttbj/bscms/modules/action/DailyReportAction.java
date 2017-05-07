@@ -33,7 +33,6 @@ public class DailyReportAction extends ActionSupport {
 	private MobileProduct mobileProduct;
 	private NewBroadband newBroadband;
 	private RenewBroadband renewBroadband;
-	private Integer serviceCentreId;
 	private ServiceCentre serviceCentre;
 	private DailyReportService dailyReportService;
 	private ServiceCentreService serviceCentreService;
@@ -42,7 +41,16 @@ public class DailyReportAction extends ActionSupport {
 	private DoorToDoorService doorToDoorService;
 	private MobileProductService mobileProductService;
 	private CustomerService customerService;
+	private String company;
 		
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	public MobileProductService getMobileProductService() {
 		return mobileProductService;
 	}
@@ -139,14 +147,6 @@ public class DailyReportAction extends ActionSupport {
 		this.serviceCentre = serviceCentre;
 	}
 
-	public Integer getServiceCentreId() {
-		return serviceCentreId;
-	}
-
-	public void setServiceCentreId(Integer serviceCentreId) {
-		this.serviceCentreId = serviceCentreId;
-	}
-
 	public RenewBroadbandService getRenewBroadbandService() {
 		return renewBroadbandService;
 	}
@@ -200,59 +200,47 @@ public class DailyReportAction extends ActionSupport {
 		//*************************************************************************	
 		//展示该服务中心昨天新装宽带数据
 		List<NewBroadband> listNewBroadband = newBroadbandService
-				.searchNewBroadbandByDatesAndServiceCentre(begin, begin, serviceCentre);
+				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
 		ctx.put("newBroadband", listNewBroadband.get(0));		
 		//展示该服务中心月累计新装宽带数据,注意字符串数组顺序问题
 		List<String> sumNewBroadbandMonth = newBroadbandService
-				.sumNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);	
-		ctx.put("newBroadbandSum", sumNewBroadbandMonth);	
+				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
+		ctx.put("sumNewBroadbandMonth", sumNewBroadbandMonth);	
 		//*************************************************************************
 		//展示该服务中心昨天续费宽带数据
 		List<RenewBroadband> listRenewBroadband = renewBroadbandService
-				.searchRenewBroadbandByDatesAndServiceCentre(begin, begin, serviceCentre);
+				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
 		ctx.put("renewBroadband", listRenewBroadband.get(0));
 		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
 		List<String> sumRenewBroadbandMonth = newBroadbandService
-				.sumNewBroadbandByDatesAndServiceCentre(end, begin, serviceCentre);	
-		ctx.put("renewBroadbandSum", sumRenewBroadbandMonth);	
+				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
+		ctx.put("sumRenewBroadbandMonth", sumRenewBroadbandMonth);	
 		//*************************************************************************	
 		//展示该服务中心昨天客流量宽带数据
 		List<Customer> listCustomer = customerService
-				.searchCustomerByDatesAndServiceCentre(begin, begin, serviceCentre);
+				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
 		ctx.put("customer", listCustomer.get(0));
 		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
 		List<String> sumCustomerMonth = customerService
-				.sumCustomerByDatesAndServiceCentre(end, begin, serviceCentre);	
+				.sumByDatesAndServiceCentre(end, begin, serviceCentre);	
 		System.out.println(sumCustomerMonth.get(0).toString());
 		ctx.put("sumCustomerMonth", sumCustomerMonth);			
 		//*************************************************************************			
 		//展示该服务中心昨天上门工作量数据
 		List<DoorToDoor> listDoorToDoor = doorToDoorService
-				.searchDoorToDoorByDatesAndServiceCentre(begin, begin, serviceCentre);
+				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
 		ctx.put("doorToDoor", listDoorToDoor.get(0));
 		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
-		List<Object> listDoorToDoorSum = doorToDoorService
-				.sumDoorToDoorByDatesAndServiceCentre(end, begin, serviceCentre);	
-		Object[] objs3 = (Object[])listDoorToDoorSum.get(0);	
-		String[] strs3 = new String[objs3.length];
-		for (int i = 0; i < objs3.length; i ++){
-			strs3[i] = objs3[i].toString();
-		}
-		ctx.put("doorToDoorSum", strs3);	
+		List<String> sumDoorToDoorMonth = doorToDoorService.sumByDatesAndServiceCentre(end, begin,serviceCentre);				
+		ctx.put("sumDoorToDoorMonth", sumDoorToDoorMonth);	
 		//*************************************************************************	
 		//展示该服务中心昨天移动产品数据
 		List<MobileProduct> listMobileProduct = mobileProductService
-				.searchMobileProductByDatesAndServiceCentre(begin, begin, serviceCentre);
+				.searchByDatesAndServiceCentre(begin, begin, serviceCentre);
 		ctx.put("mobileProduct", listMobileProduct.get(0));
 		//展示该服务中心月累计移动产品数据,注意字符串数组顺序问题
-		List<Object> listMobileProductSum = mobileProductService
-				.sumMobileProductByDatesAndServiceCentre(end, begin, serviceCentre);	
-		Object[] objs4 = (Object[])listMobileProductSum.get(0);	
-		String[] strs4 = new String[objs4.length];
-		for (int i = 0; i < objs4.length; i ++){
-			strs4[i] = objs4[i].toString();
-		}
-		ctx.put("mobileProductSum", strs4);		
+		List<String> sumMobileProductMonth = mobileProductService.sumByDatesAndServiceCentre(end, begin, serviceCentre);
+		ctx.put("sumMobileProduct", sumMobileProductMonth);
 		return "show";						
 	}	
 	
@@ -274,38 +262,92 @@ public class DailyReportAction extends ActionSupport {
 		System.out.println(end.toString());
 		//*************************************************************************	
 		//展示所有服务中心昨天新装宽带数据
-		List<String> sumNewBroadbandYestoday = newBroadbandService.sumNewBroadbandByDates(begin, begin);		
-		ctx.put("sumNewBroadbandYestoday", sumNewBroadbandYestoday);		
+		List<String> sumNewBroadbandYesterday = newBroadbandService.sumByDates(begin, begin);		
+		ctx.put("sumNewBroadbandYesterday", sumNewBroadbandYesterday);		
 		//展示所有服务中心月累计新装宽带数据,注意字符串数组顺序问题
-		List<String> sumNewBroadbandMonth = newBroadbandService.sumNewBroadbandByDates(end, begin);	
-		ctx.put("newBroadbandSum", sumNewBroadbandMonth);	
+		List<String> sumNewBroadbandMonth = newBroadbandService.sumByDates(end, begin);	
+		ctx.put("sumNewBroadbandMonth", sumNewBroadbandMonth);	
 		//*************************************************************************
 		//展示所有服务中心昨天续费宽带数据
-		List<String> sumRenewBroadbandYesterday = renewBroadbandService.sumRenewBroadbandByDates(begin, begin);
+		List<String> sumRenewBroadbandYesterday = renewBroadbandService.sumByDates(begin, begin);
 		ctx.put("sumRenewBroadbandYesterday", sumRenewBroadbandYesterday);
 		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
-		List<String> sumRenewBroadbandMonth = renewBroadbandService.sumRenewBroadbandByDates(end, begin);	
+		List<String> sumRenewBroadbandMonth = renewBroadbandService.sumByDates(end, begin);	
 		ctx.put("sumRenewBroadbandMonth", sumRenewBroadbandMonth);	
 		//*************************************************************************	
 		//展示该服务中心昨天客流量宽带数据
-		List<String> sumCustomerYestoday = customerService.sumCustomerByDates(begin, begin);
-		ctx.put("sumCustomerYestoday", sumCustomerYestoday);
+		List<String> sumCustomerYesterday = customerService.sumByDates(begin, begin);
+		ctx.put("sumCustomerYesterday", sumCustomerYesterday);
 		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
-		List<String> sumCustomerMonth = customerService.sumCustomerByDates(end, begin);				
+		List<String> sumCustomerMonth = customerService.sumByDates(end, begin);				
 		ctx.put("sumCustomerMonth", sumCustomerMonth);			
 		//*************************************************************************			
 		//展示该服务中心昨天上门工作量数据
-		List<String> sumDoorToDoorYestoday = doorToDoorService.sumDoorToDoorByDates(begin, begin);
-		ctx.put("sumDoorToDoorYestoday", sumDoorToDoorYestoday);
+		List<String> sumDoorToDoorYesterday = doorToDoorService.sumByDates(begin, begin);
+		ctx.put("sumDoorToDoorYesterday", sumDoorToDoorYesterday);
 		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
-		List<String> sumDoorToDoorMonth = doorToDoorService.sumDoorToDoorByDates(end, begin);	
+		List<String> sumDoorToDoorMonth = doorToDoorService.sumByDates(end, begin);	
 		ctx.put("sumDoorToDoorMonth", sumDoorToDoorMonth);	
 		//*************************************************************************	
 		//展示所有服务中心昨天移动产品数据
-		List<String> sumMobileProductYestoday = mobileProductService.sumMobileProductByDates(begin, begin);
-		ctx.put("sumMobileProductYestoday", sumMobileProductYestoday);
+		List<String> sumMobileProductYesterday = mobileProductService.sumByDates(begin, begin);
+		ctx.put("sumMobileProductYesterday", sumMobileProductYesterday);
 		//展示所有服务中心月累计移动产品数据,注意字符串数组顺序问题
-		List<String> sumMobileProductMonth = mobileProductService.sumMobileProductByDates(end, begin);	
+		List<String> sumMobileProductMonth = mobileProductService.sumByDates(end, begin);	
+		ctx.put("sumMobileProductMonth", sumMobileProductMonth);		
+		return "showAll";						
+	}	
+	
+	public String showCompany(){
+		/**
+		 * 机关权限仪表盘,查询各分公司数据
+		 * @return
+		 */
+		ActionContext ctx = ActionContext.getContext();
+		Calendar b = Calendar.getInstance();
+		b.roll(5, -1);	
+		//代表昨天
+		Date begin = b.getTime();		
+		Calendar c = Calendar.getInstance();	
+		c.roll(5, 1-c.get(5));;	
+		//代表当月第一天
+		Date end = c.getTime();	
+		System.out.println(begin.toString());
+		System.out.println(end.toString());
+		//*************************************************************************	
+		//展示所有服务中心昨天新装宽带数据
+		List<String> sumNewBroadbandYesterday = newBroadbandService.sumByDatesAndCompany(begin, begin, company);		
+		ctx.put("sumNewBroadbandYesterday", sumNewBroadbandYesterday);		
+		//展示所有服务中心月累计新装宽带数据,注意字符串数组顺序问题
+		List<String> sumNewBroadbandMonth = newBroadbandService.sumByDatesAndCompany(end, begin, company);	
+		ctx.put("sumNewBroadbandMonth", sumNewBroadbandMonth);	
+		//*************************************************************************
+		//展示所有服务中心昨天续费宽带数据
+		List<String> sumRenewBroadbandYesterday = renewBroadbandService.sumByDatesAndCompany(begin, begin, company);
+		ctx.put("sumRenewBroadbandYesterday", sumRenewBroadbandYesterday);
+		//展示该服务中心月累计续费宽带数据,注意字符串数组顺序问题
+		List<String> sumRenewBroadbandMonth = renewBroadbandService.sumByDatesAndCompany(end, begin, company);	
+		ctx.put("sumRenewBroadbandMonth", sumRenewBroadbandMonth);	
+		//*************************************************************************	
+		//展示该服务中心昨天客流量宽带数据
+		List<String> sumCustomerYesterday = customerService.sumByDatesAndCompany(begin, begin, company);
+		ctx.put("sumCustomerYesterday", sumCustomerYesterday);
+		//展示该服务中心月累计客流量数据,注意字符串数组顺序问题
+		List<String> sumCustomerMonth = customerService.sumByDatesAndCompany(end, begin, company);				
+		ctx.put("sumCustomerMonth", sumCustomerMonth);			
+		//*************************************************************************			
+		//展示该服务中心昨天上门工作量数据
+		List<String> sumDoorToDoorYesterday = doorToDoorService.sumByDatesAndCompany(begin, begin, company);
+		ctx.put("sumDoorToDoorYesterday", sumDoorToDoorYesterday);
+		//展示该服务中心月累计上门工作量数据,注意字符串数组顺序问题
+		List<String> sumDoorToDoorMonth = doorToDoorService.sumByDatesAndCompany(end, begin, company);	
+		ctx.put("sumDoorToDoorMonth", sumDoorToDoorMonth);	
+		//*************************************************************************	
+		//展示所有服务中心昨天移动产品数据
+		List<String> sumMobileProductYesterday = mobileProductService.sumByDatesAndCompany(begin, begin, company);
+		ctx.put("sumMobileProductYesterday", sumMobileProductYesterday);
+		//展示所有服务中心月累计移动产品数据,注意字符串数组顺序问题
+		List<String> sumMobileProductMonth = mobileProductService.sumByDatesAndCompany(end, begin, company);	
 		ctx.put("sumMobileProductMonth", sumMobileProductMonth);		
 		return "showAll";						
 	}	

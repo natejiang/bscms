@@ -26,14 +26,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> searchCustomerByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
+	public List<Customer> searchByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
 		List<Customer> list = customerDao
 				.findByDatesAndServiceCentre(Customer.class, end, begin, serviceCentre);
 		return list;
 	}
 
 	@Override
-	public List<String> sumCustomerByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
+	public List<String> sumByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
 		List<Object> objsList = customerDao.sumByDatesAndServiceCentre(Customer.class, end, begin, serviceCentre);
 		Object obj = (Object) objsList.get(0);
 		List<String> list = new ArrayList<>();
@@ -42,17 +42,40 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> searchCustomerByDates(Date end, Date begin) {
+	public List<Customer> searchByDates(Date end, Date begin) {
 		List<Customer> list = customerDao.findByDates(Customer.class, end, begin);
 		return list;
 	}
 
 	@Override
-	public List<String> sumCustomerByDates(Date end, Date begin) {
+	public List<String> sumByDates(Date end, Date begin) {
+		List<String> list = new ArrayList<>();
 		List<Object> objsList = customerDao.sumByDates(Customer.class, end, begin);
 		Object objs = (Object) objsList.get(0);
+		if(objs == null){
+			list.add("0");
+		}else{
+			list.add(objs.toString());
+		}						
+		return list;								
+	}
+	
+	@Override
+	public List<Customer> searchByDatesAndCompany(Date end, Date begin, String company) {
+		List<Customer> list = customerDao.findByDatesAndCompany(Customer.class, end, begin, company);
+		return list;
+	}
+
+	@Override
+	public List<String> sumByDatesAndCompany(Date end, Date begin, String company) {
 		List<String> list = new ArrayList<>();
-		list.add(objs.toString());				
+		List<Object> objsList = customerDao.sumByDatesAndCompany(Customer.class, end, begin, company);
+		Object objs = (Object) objsList.get(0);
+		if(objs == null){
+			list.add("0");
+		}else{
+			list.add(objs.toString());
+		}						
 		return list;
 	}
 }

@@ -21,7 +21,7 @@ public class MobileProductServiceImpl implements MobileProductService{
 	}
 
 	@Override
-	public List<MobileProduct> searchMobileProductByDatesAndServiceCentre(Date end, Date begin,
+	public List<MobileProduct> searchByDatesAndServiceCentre(Date end, Date begin,
 			ServiceCentre serviceCentre) {
 		List<MobileProduct> list = mobileProductDao
 				.findByDatesAndServiceCentre(MobileProduct.class, end, begin, serviceCentre);
@@ -29,25 +29,59 @@ public class MobileProductServiceImpl implements MobileProductService{
 	}
 
 	@Override
-	public List<Object> sumMobileProductByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
-		List<Object> list = mobileProductDao.sumByDatesAndServiceCentre(MobileProduct.class, end, begin, serviceCentre);
+	public List<String> sumByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
+		List<String> list = new ArrayList<>();
+		List<Object> objsList = mobileProductDao.sumByDatesAndServiceCentre(MobileProduct.class, end, begin, serviceCentre);		
+		Object[] objs = (Object[]) objsList.get(0);  
+		for (int i = 0; i < objs.length; i ++){
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}			
+		}	
 		return list;
 	}
 
 	@Override
-	public List<MobileProduct> searchMobileProductByDates(Date end, Date begin) {
+	public List<MobileProduct> searchByDates(Date end, Date begin) {
 		List<MobileProduct> list = mobileProductDao.findByDates(MobileProduct.class, end, begin);
 		return list;
 	}
 
 	@Override
-	public List<String> sumMobileProductByDates(Date end, Date begin) {
-		List<Object> objsList = mobileProductDao.sumByDates(MobileProduct.class, end, begin);
-		Object[] objs = (Object[]) objsList.get(0);
+	public List<String> sumByDates(Date end, Date begin) {
 		List<String> list = new ArrayList<>();
-		for(int i = 0;i < objs.length;i ++){
-			list.add(i, objs[i].toString());
-		}
+		List<Object> objsList = mobileProductDao.sumByDates(MobileProduct.class, end, begin);		
+		Object[] objs = (Object[]) objsList.get(0);
+		for (int i = 0; i < objs.length; i ++){
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}			
+		}	
+		return list;	
+	}
+
+	@Override
+	public List<MobileProduct> searchByDatesAndCompany(Date end, Date begin, String company) {
+		List<MobileProduct> list = mobileProductDao.findByDatesAndCompany(MobileProduct.class, end, begin, company);
+		return list;
+	}
+
+	@Override
+	public List<String> sumByDatesAndCompany(Date end, Date begin, String company) {
+		List<String> list = new ArrayList<>();
+		List<Object> objsList = mobileProductDao.sumByDatesAndCompany(MobileProduct.class, end, begin, company);		
+		Object[] objs = (Object[]) objsList.get(0);
+		for (int i = 0; i < objs.length; i ++){
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}			
+		}	
 		return list;
 	}
 

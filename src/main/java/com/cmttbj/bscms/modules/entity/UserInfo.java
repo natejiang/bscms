@@ -29,7 +29,7 @@ public class UserInfo implements Serializable{
 	@Id @Column(name="user_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer userId;
-	@Column(name="username",length=10)
+	@Column(name="username",length=20)
 	private String username;
 	@Column(name="password",length=50)
 	private String password;

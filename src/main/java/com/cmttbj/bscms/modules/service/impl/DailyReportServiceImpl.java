@@ -80,7 +80,7 @@ public class DailyReportServiceImpl implements DailyReportService{
 	public int addDailyReport(DailyReport dailyReport, ServiceCentre serviceCentre) {
 		
 		Date today = new Date();		
-		List<Customer> list = customerDao.findByDateAndServiceCentreId(Customer.class, today, serviceCentre);
+		List<Customer> list = customerDao.findByDatesAndServiceCentre(Customer.class, today, today, serviceCentre);
 		//日报表每日只能存在一条记录
 		if(list.isEmpty()){
 			dailyReportDao.save(dailyReport);

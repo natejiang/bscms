@@ -17,10 +17,12 @@ public class UserInfoAction extends ActionSupport {
 	private static final long serialVersionUID = 48L;
 	
 	private UserInfo userInfo;
-	private ManagerInfo managerInfo;
-	private Integer serviceCentreId;
+	private ManagerInfo managerInfo;	
 	private UserInfoService userInfoService;
 	private ServiceCentreService serviceCentreService;
+	private Integer serviceCentreId;
+	private String newPassword;
+	private String tip = null;
 	
 	public UserInfo getUserInfo() {
 		return userInfo;
@@ -61,6 +63,22 @@ public class UserInfoAction extends ActionSupport {
 	public void setServiceCentreService(ServiceCentreService serviceCentreService) {
 		this.serviceCentreService = serviceCentreService;
 	}
+	
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
 
 	public String add(){
 		List<ServiceCentre> list = serviceCentreService.findServiceCentreById(serviceCentreId);
@@ -68,9 +86,25 @@ public class UserInfoAction extends ActionSupport {
 		userInfoService.addUserInfo(userInfo);
 		return SUCCESS;
 	}
+	
 	public String addManager(){
 		userInfoService.addUserInfo(managerInfo);
 		return SUCCESS;
 	}
 	
+	public String changePassword(){
+		List<UserInfo> list = userInfoService.validLogin(userInfo);
+		if(list.size() > 0){
+			userInfo = list.get(0);
+			userInfo.setPassword(newPassword);
+			userInfoService.addUserInfo(userInfo);
+			setTip(":密码修改成功");	
+			System.out.println(tip);
+			
+		}else{
+			setTip(":原密码错误");
+			System.out.println(tip);
+		}		
+		return INPUT;
+	}	
 }

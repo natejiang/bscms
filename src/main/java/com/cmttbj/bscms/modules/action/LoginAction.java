@@ -27,6 +27,7 @@ public class LoginAction extends ActionSupport{
 	private ManagerInfo managerInfo;
 	private ManagerInfoService managerInfoService;
 	private UserInfoService userInfoService;
+	private String tip;
 
 	public UserInfoService getUserInfoService() {
 		return userInfoService;
@@ -51,6 +52,14 @@ public class LoginAction extends ActionSupport{
 	public void setManagerInfoService(ManagerInfoService managerInfoService) {
 		this.managerInfoService = managerInfoService;
 	}
+	
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
 
 	public String login() throws Exception{
 		ActionContext ctx = ActionContext.getContext();
@@ -66,13 +75,18 @@ public class LoginAction extends ActionSupport{
 			return USR_RESULT;
 		}else if(result == LOGIN_MGR)
 		{
-			ctx.getSession().put(WebConstant.USERNAME, managerInfo.getUsername());			
+			List<UserInfo> list = userInfoService.validLogin(managerInfo);
+			managerInfo = (ManagerInfo) list.get(0);
+			ctx.getSession().put(WebConstant.USERNAME, managerInfo.getUsername());	
+			ctx.getSession().put(WebConstant.FULLNAME, managerInfo.getFullname());	
+			System.out.println(managerInfo.getFullname());
 			return MGR_RESULT;
 		}else
 		{
+			setTip(":用户名或密码错误");
+			System.out.println(tip);
 			return ERROR;
-		}
-		
+		}		
 	}	
 	public String logout() throws Exception{
 		ActionContext ctx = ActionContext.getContext();

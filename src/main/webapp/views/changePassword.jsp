@@ -3,7 +3,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<s:debug/>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,19 +19,42 @@ $(document).ready(function() {
 		  errorElement: "span",
 		  rules: 
 		  {
-			"serviceCentre.serviceCentreName": 
-	        {
-		    	required: true,
-		        minlength: 4
+		    "userInfo.password": 
+		    {
+		        required: true,
+		        minlength: 6
 		    },
+		    newPassword: 
+		    {
+		        required: true,
+		        minlength: 6
+		    },
+		    comfirm_password:
+		    {
+		        required: true,
+		        minlength: 6,
+		        equalTo: "#newPassword"
+		    },
+		    	
 		  },
 		  messages: 
 		  {
-			"serviceCentre.serviceCentreName": 
+		    "userInfo.password": 
 		    {
-		        required: "请输入服务站名",
-		        minlength: "长度不能小于4个字符"
+		        required: "请输入原密码",
+		        minlength: "密码长度不能小于6个字符"
 		    },
+		     newPassword: 
+		    {
+		        required: "请输入新密码",
+		        minlength: "密码长度不能小于6个字符"
+		    },
+		    comfirm_password:
+		    {
+		    	 required: "请输入新密码",
+			     minlength: "密码长度不能小于6个字符",
+		    	 equalTo: "两次密码输入不一致"	    	 
+		    }		     
 		  }
 		});
 	
@@ -53,59 +75,52 @@ $(document).ready(function() {
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
+<s:debug/>
 </head>
 <s:if test="#session.username!=''">
 <body>
+
 	<div id="container">
     	<div id="header">
         	<h2>北京铁通宽带服务中心管理系统</h2>
     		<div id="topmenu">
             	<ul>
-                	<li><a href="#">通知管理 </a></li>
-                	<li><a href="/bscms/views/dailyReport_showAll">数据统计 </a></li>
-                	<li><a href="/bscms/views/page_userRegist">用户管理 </a></li>
-                	<li class="current"><a href="#">服务中心管理 </a></li>
-                    <li><a href="#">个人设置</a></li>
+                	<li><a href="#">店面通知</a></li>
+                	<li><a href="/bscms/views/page_dailyReportSubmit">数据统计</a></li>
+                    <li class="current"><a href="#">个人设置</a></li>
               	</ul>
          	 </div>
      	</div>
         <div id="top-panel">
             <div id="panel">
                 <ul>
-					<li><a href="#" class="useradd">新增</a></li>
-					<li><a href="#" class="group">管理</a></li>
-					<li><a href="#" class="search">查找</a></li>
-					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">logout</a></li>
+					<li><a href="#" class="user">当前用户：<s:property value="#session.serviceCentre.serviceCentreName"/><s:property value="#session.fullname"/></a><a href="/bscms/views/process_logout">注销用户</a></li>
                 </ul>
             </div>
       	</div>
         <div id="wrapper">
             <div id="content">             
                 <div id="box">
-                	<h3 id="adduser">新增服务中心</h3>
-                    <form id="form" action="/bscms/views/serviceCentre_add" method="post">
+                	<h3 id="adduser">账户管理</h3>
+                    <form id="form" action="/bscms/views/userInfo_changePassword" method="post">
                       <fieldset>
-                        <legend>服务中心信息</legend>
-                        <label>名称</label> 
-                        <input name="serviceCentre.serviceCentreName" type="text" tabindex="1" />                    
+                        <legend>修改密码<s:property value="tip"/></legend>
+                        <input type="hidden" name="userInfo.username" value="<s:property value="#session.username"/>">
+                        <label>原密码</label> 
+                        <input name="userInfo.password" type="password" tabindex="1" />                    
                         <br />
-                        <label>隶属</label>
-                        <select name="serviceCentre.company">
-                          <option selected="selected" label="机关" value="jiguan">机关</option> 
-                          <option label="中心区" value="centre">中心区</option>                              
-                          <option label="南区" value="south">南区</option>  
-                          <option label="北区" value="north">北区</option>                         
-                          <option label="朝阳" value="chaoyang">朝阳</option>
-                          <option label="通顺" value="tongshu">通顺</option>
-                          <option label="郊区" value="jiaoqv">郊区</option>
-                          <option label="昌延" value="changyan">昌延</option> 
-                        </select>
-                      </fieldset>                               
+                        <label>新密码</label> 
+                        <input id="newPassword" name="newPassword" type="password" tabindex="1" />                    
+                        <br />
+                        <label>验证新密码</label> 
+                        <input name="comfirm_password" type="password" tabindex="1" />                                                         
+                      </fieldset>                                             
                       <div align="center">
-	                  	<input id="button1" type="submit" value="确认"  /> 
-	                    <input id="button2" type="reset" value="重置"/>
+	                  	<input id="button1" type="submit" value="提交 " /> 
+	                    <input id="button2" type="submit" value="重置"/>
                       </div>                                   
                     </form>
+                    <label><s:fielderror/></label>
                 </div>
             </div>          
       </div>

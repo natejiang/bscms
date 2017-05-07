@@ -27,21 +27,21 @@ public class RenewBroadband implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="ihome_broadband_quantity_20",length=10)
+	@Column(name="ihome_broadband_quantity_20",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer ihomeBroadbandQuantity20;
-	@Column(name="ihome_broadband_quantity_30",length=10)
+	@Column(name="ihome_broadband_quantity_30",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer ihomeBroadbandQuantity30;
-	@Column(name="ihome_broadband_quantity_50",length=10)
+	@Column(name="ihome_broadband_quantity_50",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer ihomeBroadbandQuantity50;
-	@Column(name="ihome_broadband_quantity_100",length=10)
+	@Column(name="ihome_broadband_quantity_100",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer ihomeBroadbandQuantity100;
-	@Column(name="only_broadband_quantity_20",length=10)
+	@Column(name="only_broadband_quantity_20",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer onlyBroadbandQuantity20;
-	@Column(name="only_broadband_quantity_30",length=10)
+	@Column(name="only_broadband_quantity_30",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer onlyBroadbandQuantity30;
-	@Column(name="only_broadband_quantity_50",length=10)
+	@Column(name="only_broadband_quantity_50",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer onlyBroadbandQuantity50;
-	@Column(name="only_broadband_quantity_100",length=10)
+	@Column(name="only_broadband_quantity_100",length=10,nullable=false,columnDefinition="INT default 0")
 	private Integer onlyBroadbandQuantity100;
 	@ManyToOne(targetEntity=ServiceCentre.class)
 	@JoinColumn(name="service_centre_id")

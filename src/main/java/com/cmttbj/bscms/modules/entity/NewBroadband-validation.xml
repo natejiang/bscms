@@ -9,7 +9,7 @@
 	<!-- 校验Action的newBroadband.ihomeBroadbandQuantity20属性 -->
 	<field name="ihomeBroadbandQuantity20">
 		<!-- 指定newBroadband.ihomeBroadbandQuantity20属性必须满足必填规则-->
-		<field-validator type="requiredstring" short-circuit="true">
+		<field-validator type="required" short-circuit="true">
 			<param name="trim">true</param>
 			<message>新增爱家20M数量不能为空</message>		
 		</field-validator>
@@ -24,7 +24,7 @@
 	<!-- 校验Action的newBroadband.ihomeBroadbandQuantity30属性 -->
 	<field name="ihomeBroadbandQuantity30">
 		<!-- 指定newBroadband.ihomeBroadbandQuantity30属性必须满足必填规则-->
-		<field-validator type="requiredstring" short-circuit="true">
+		<field-validator type="required" short-circuit="true">
 			<param name="trim">true</param>
 			<message>新增爱家30M数量不能为空</message>		
 		</field-validator>
@@ -39,7 +39,7 @@
 	<!-- 校验Action的newBroadband.ihomeBroadbandQuantity50属性 -->
 	<field name="ihomeBroadbandQuantity50">
 		<!-- 指定newBroadband.ihomeBroadbandQuantity50属性必须满足必填规则-->
-		<field-validator type="requiredstring" short-circuit="true">
+		<field-validator type="required" short-circuit="true">
 			<param name="trim">true</param>
 			<message>新增爱家50M数量不能为空</message>		
 		</field-validator>
@@ -54,7 +54,7 @@
 	<!-- 校验Action的newBroadband.ihomeBroadbandQuantity100属性 -->
 	<field name="ihomeBroadbandQuantity100">
 		<!-- 指定newBroadband.ihomeBroadbandQuantity100属性必须满足必填规则-->
-		<field-validator type="requiredstring" short-circuit="true">
+		<field-validator type="required" short-circuit="true">
 			<param name="trim">true</param>
 			<message>新增爱家100M数量不能为空</message>		
 		</field-validator>
