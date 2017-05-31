@@ -26,11 +26,16 @@
 			p:managerInfoService-ref="managerInfoService"
 			p:userInfoService-ref="userInfoService" /> 
 		<bean id="serviceCentreAction" class="com.cmttbj.bscms.modules.action.ServiceCentreAction" scope="prototype"
-			p:serviceCentreService-ref="serviceCentreService" /> 
+			p:serviceCentreService-ref="serviceCentreService" 
+			p:pageBean-ref="pageBean"/> 
 		<bean id="userInfoAction" class="com.cmttbj.bscms.modules.action.UserInfoAction" scope="prototype"
 			p:userInfoService-ref="userInfoService"
 			p:serviceCentreService-ref="serviceCentreService" /> 
 		<bean id="pageAction" class="com.cmttbj.bscms.modules.action.PageAction" scope="prototype"/> 
 		<bean id="excelAction" class="com.cmttbj.bscms.modules.action.ExcelAction" scope="prototype"
+			p:newBroadbandService-ref="newBroadbandService"
+			p:renewBroadbandService-ref="renewBroadbandService"
+			p:doorToDoorService-ref="doorToDoorService"
+			p:mobileProductService-ref="mobileProductService"
 			p:customerService-ref="customerService"/> 
 </beans>

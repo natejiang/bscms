@@ -3,7 +3,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
@@ -75,7 +74,6 @@ $(document).ready(function() {
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
-<s:debug/>
 </head>
 <s:if test="#session.username!=''">
 <body>

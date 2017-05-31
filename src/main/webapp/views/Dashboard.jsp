@@ -2,13 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<s:debug/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>日报仪表 - 北京铁通宽带服务中心管理系统</title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script src="./js/companyName.js"></script>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+    $( "#datepicker" ).datepicker( "option", "dateFormat","yy-mm-dd") ;
+    $( "#datepicker1" ).datepicker( "option", "dateFormat","yy-mm-dd") ;
+  } );
+</script>
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
@@ -40,7 +53,7 @@
 					<li><a href="/bscms/views/dailyReport_showCompany?company=south" class="">南区</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=north" class="">北区</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=chaoyang" class="">朝阳</a></li>
-					<li><a href="/bscms/views/dailyReport_showCompany?company=tongshun" class="">通顺</a></li>
+					<li><a href="/bscms/views/dailyReport_showCompany?company=tongshu" class="">通顺</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=jiaoqv" class="">郊区</a></li>
 					<li><a href="/bscms/views/dailyReport_showCompany?company=changyan" class="">昌延</a></li>
 					<li>当前用户是<s:property value="#session.fullname"/><a href="/bscms/views/process_logout">用户注销</a></li>
@@ -51,12 +64,12 @@
             <div id="content">
        			<div id="rightnow">
                     <h3 class="reallynow">
-                        <span>昨日数据</span>
+                        <span>昨日数据<s:property value="company"/></span>
                         <a href="#" class="add"></a>
                         <a href="#" class="app_add"></a>
                         <br />
                     </h3>
-				    <p class="youhave">今天<a href="#">19个服务站</a>未提交数据 
+				    <p class="youhave">今天<a href="#">XX个服务站</a>未提交数据 
                     </p>
 			  </div>
               <div id="infowrap">  
@@ -248,9 +261,19 @@
 						</tbody>
 					</table>					
                   </div>
+                  <div id="infobox" class="margin-left">
+                  	<h3>导出EXCEL</h3> 
+                  	<form id="form" action="/bscms/views/downloadWorkload?company=<s:property value="company"/>" method="post">
+                  		<fieldset>
+						<p>起始时间&nbsp&nbsp<input type="text" id="datepicker" name="end" required="required"></p>
+						<p>结束时间&nbsp&nbsp<input type="text" id="datepicker1" name="begin" required="required"></p>
+						<input id="toexcel" type="submit" value="导出" />
+						</fieldset>
+					</form>                
+                  </div>                  
               </div>
             </div>
-         
+       
       </div>
         <div id="footer">
         <div id="credits">

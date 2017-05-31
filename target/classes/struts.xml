@@ -16,18 +16,23 @@
 		<action name="process_*" class="loginAction" method="{1}">
 			<result name="input">/views/userLogin.jsp</result>
 			<result name="usr">/views/dailyReportSubmit.jsp</result>
-			<result name="mgr">/views/serviceCentreRegist.jsp</result>
+			<result name="mgr" type="chain">dailyReport_showAll</result>
 			<result name="error">/views/userLogin.jsp</result>
 		</action>
 		
 		<action name="userInfo_*" class="userInfoAction" method="{1}">
-			<result name="input">/views/changePassword.jsp</result>
+			<result name="input">/views/userRegist.jsp</result>
+			<result name="change">/views/changePassword.jsp</result>		
 			<result name="success">/views/userRegist.jsp</result>
+			<result name="list_success">/views/userManager.jsp</result>
+			<result name="delete" type="chain">userInfo_list</result>
 			<result name="error">/views/userlogin.jsp</result>
 		</action>
 		
 		<action name="serviceCentre_*" class="serviceCentreAction" method="{1}">
 			<result name="success">/views/serviceCentreRegist.jsp</result>
+			<result name="list_success">/views/serviceCentreManager.jsp</result>
+			<result name="delete" type="chain">serviceCentre_list</result>
 			<result name="error">/views/userLogin.jsp</result>
 		</action>
 		
@@ -44,7 +49,7 @@
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
 			　　　　<param name="inputName">excelStream</param>
-			　　　　<param name="contentDisposition">attachment;filename=${excelFileName}</param>  
+			　　　　<param name="contentDisposition">attachment;filename=${fileName}</param>  
 			　　　　<param name="bufferSize">4096</param>  
 			</result>
 		</action>

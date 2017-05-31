@@ -42,6 +42,7 @@ public class DailyReportAction extends ActionSupport {
 	private MobileProductService mobileProductService;
 	private CustomerService customerService;
 	private String company;
+	private String tip;
 		
 	public String getCompany() {
 		return company;
@@ -155,6 +156,14 @@ public class DailyReportAction extends ActionSupport {
 		this.renewBroadbandService = renewBroadbandService;
 	}
 
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+
 	public String add() throws Exception
 	{
 		DailyReport dailyReport = new DailyReport();
@@ -173,13 +182,13 @@ public class DailyReportAction extends ActionSupport {
 		int result = dailyReportService.addDailyReport(dailyReport, serviceCentre);		
 		if(result > 0)
 		{
+			setTip(":上传数据成功！");
 			return "add_success";
 		}else
 		{
 			return ERROR;		
 		}				
-	}		
-	
+	}			
 	public String show(){
 		/**
 		 * ServiceCentre权限仪表盘
@@ -187,13 +196,18 @@ public class DailyReportAction extends ActionSupport {
 		 */
 		ActionContext ctx = ActionContext.getContext();
 		serviceCentre = (ServiceCentre) ctx.getSession().get("serviceCentre");	
+		//代表昨天
 		Calendar b = Calendar.getInstance();
 		b.roll(5, -1);	
-		//代表昨天
-		Date begin = b.getTime();		
-		Calendar c = Calendar.getInstance();	
-		c.roll(5, 1-c.get(5));;	
+		Date begin = b.getTime();	
 		//代表当月第一天
+		Calendar c = Calendar.getInstance();	
+		//如果是月初第一天，则向前滚动一个月
+		if(c.get(5) == 1){
+			c.roll(2,-1);
+		}else{
+			c.roll(5, 1-c.get(5));;				
+		}			
 		Date end = c.getTime();	
 		System.out.println(begin.toString());
 		System.out.println(end.toString());
@@ -319,7 +333,7 @@ public class DailyReportAction extends ActionSupport {
 		ctx.put("sumMobileProductYesterday", sumMobileProductYesterday);
 		//展示所有服务中心月累计移动产品数据,注意字符串数组顺序问题
 		List<String> sumMobileProductMonth = mobileProductService.sumByDates(end, begin);	
-		ctx.put("sumMobileProductMonth", sumMobileProductMonth);		
+		ctx.put("sumMobileProductMonth", sumMobileProductMonth);
 		return "showAll";						
 	}	
 	

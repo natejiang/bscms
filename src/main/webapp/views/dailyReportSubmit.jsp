@@ -3,7 +3,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
@@ -25,11 +24,9 @@
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
-<s:debug/>
 </head>
 <s:if test="#session.username!=''">
 <body>
-
 	<div id="container">
     	<div id="header">
         	<h2>北京铁通宽带服务中心管理系统</h2>
@@ -53,7 +50,7 @@
         <div id="wrapper">
             <div id="content">             
                 <div id="box">
-                	<h3 id="adduser">提交数据</h3>
+                	<h3 id="adduser">提交数据<s:property value="tip"/></h3>
                     <form id="form" action="/bscms/views/dailyReport_add" method="post">
                       <fieldset>
                         <legend>宽带新装</legend>

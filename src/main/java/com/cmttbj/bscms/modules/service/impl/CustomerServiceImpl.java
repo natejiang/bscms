@@ -35,9 +35,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<String> sumByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre) {
 		List<Object> objsList = customerDao.sumByDatesAndServiceCentre(Customer.class, end, begin, serviceCentre);
-		Object obj = (Object) objsList.get(0);
+		Object objs = (Object) objsList.get(0);
 		List<String> list = new ArrayList<>();
-		list.add(obj.toString());			
+		if(objs == null){
+			list.add("0");
+		}else{
+			list.add(objs.toString());
+		}			
 		return list;
 	}
 

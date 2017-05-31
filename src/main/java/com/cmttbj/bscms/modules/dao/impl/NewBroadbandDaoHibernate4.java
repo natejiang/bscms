@@ -44,7 +44,7 @@ public class NewBroadbandDaoHibernate4 extends BaseDaoHibernate4<NewBroadband>
 	//获取实体按日期
 	@Override
 	public List<NewBroadband> findByDates(Class<NewBroadband> entityClazz,
-			Date begin, Date end) {
+			Date end, Date begin) {
 		return find("select en from " + entityClazz.getSimpleName() + " en where en.date between ? and ?"
 				+ " order by en.date desc", 
 				end, begin);
@@ -53,8 +53,9 @@ public class NewBroadbandDaoHibernate4 extends BaseDaoHibernate4<NewBroadband>
 	@Override
 	public List<NewBroadband> findByDatesAndCompany(Class<NewBroadband> entityClazz, Date end, Date begin,
 			String company) {
-		// TODO Auto-generated method stub
-		return null;
+		return find("select en from " + entityClazz.getSimpleName() + " en where en.date between ? and ? and en.serviceCentre.company = ?"
+				+ " order by en.date desc", 
+				end, begin,company);
 	}
 	//求和实体属性根据日期和服务中心
 	@SuppressWarnings("unchecked")

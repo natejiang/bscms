@@ -31,7 +31,5 @@
 			<param name="expression"><![CDATA[(\w{4,25})]]></param>
 			<message>您输入的密码只能是字母和数字，且长度必须在4到25之间</message>
 		</field-validator>
-	</field>
-	
-	
+	</field>	
 </validators>

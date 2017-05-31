@@ -3,8 +3,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<s:debug/>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>店面管理 - 北京铁通宽带服务中心管理系统 </title>
@@ -31,6 +29,12 @@ $(document).ready(function() {
 		        required: true,
 		        minlength: 6
 		    },
+		    comfirm_password:
+		    {
+		        required: true,
+		        minlength: 6,
+		        equalTo: "#password"
+		    },
 		    "userInfo.fullname": 
 		    {
 		        required: true,
@@ -50,12 +54,17 @@ $(document).ready(function() {
 		        required: "请输入密码",
 		        minlength: "密码长度不能小于6个字符"
 		     },
+		    comfirm_password:
+			{
+		    	 required: "请输入新密码",
+			     minlength: "密码长度不能小于6个字符",
+		    	 equalTo: "两次密码输入不一致"	    	 
+			},	
 		     "userInfo.fullname": 
 		    {
 		        required: "请输入姓名",
 		        minlength: "密码长度不能小于2个字符"
-		     },
-		     
+		     },	     
 		  }
 		});
 	
@@ -77,7 +86,7 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
 </head>
-
+<s:if test="#session.username!=''">
 <body>
 	<div id="container">
     	<div id="header">
@@ -97,7 +106,7 @@ $(document).ready(function() {
                 <ul>
 					<li><a href="/bscms/views/page_userRegist" class="useradd">新增用户</a></li>
 					<li><a href="/bscms/views/page_managerRegist" class="useradd">新增管理员</a></li>
-					<li><a href="#" class="group">管理用户</a></li>
+					<li><a href="/bscms/views/userInfo_list" class="group">管理用户</a></li>
 					<li><a href="#" class="search">查找用户</a></li>					
 					<li>当前用户是<s:property value="#session.serviceCentreName"/><s:property value="#session.fullname"/><a href="/bscms/views/process_logout">用户注销</a></li>
                 </ul>
@@ -109,12 +118,15 @@ $(document).ready(function() {
                 	<h3 id="adduser">新增用户</h3>
                     <form id="form" action="/bscms/views/userInfo_add" method="post">
                       <fieldset>
-                        <legend>用户信息</legend>
+                        <legend>用户信息<s:property value="tip"/></legend>
                         <label>用户名</label> 
                         <input name="userInfo.username" type="text" tabindex="1" />                    
                         <br />
                         <label>密码</label> 
-                        <input name="userInfo.password" type="text" tabindex="1" />                    
+                        <input id="password" name="userInfo.password" type="password" tabindex="1" />                    
+                        <br />
+                        <label>验证密码</label> 
+                        <input name="comfirm_password" type="password" tabindex="1" />  
                         <br />
                         <label>姓名</label> 
                         <input name="userInfo.fullname" type="text" tabindex="1" />                    
@@ -129,10 +141,11 @@ $(document).ready(function() {
                         </select>
                       </fieldset>                               
                       <div align="center">
-	                  	<input id="button1" type="submit" value="Send"  /> 
-	                    <input id="button2" type="reset" />
+	                  	<input id="button1" type="submit" value="确认"  /> 
+	                    <input id="button2" type="reset" value="重置"/>
                       </div>                                   
                     </form>
+                    <label><s:fielderror/></label>
                 </div>
             </div>          
       </div>
@@ -150,6 +163,7 @@ $(document).ready(function() {
             </ul>
         </div><br />
 	  </div>
-</div>
+	</div>
 </body>
+</s:if>
 </html>

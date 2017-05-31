@@ -347,6 +347,14 @@ form#form #button1:hover, form#form #button2:hover {
 form#form #login {
 	margin-left:102px;
 }
+form#form #toexcel {
+	padding-right:5px;
+	cursor:pointer;
+	width:100px;
+	margin-left:8px;
+	font-weight:bold;
+	margin-left:57px;
+}
 
 /*********************
 	Icons

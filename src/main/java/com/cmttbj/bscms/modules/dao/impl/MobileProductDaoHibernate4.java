@@ -60,8 +60,9 @@ public class MobileProductDaoHibernate4 extends BaseDaoHibernate4<MobileProduct>
 	@Override
 	public List<MobileProduct> findByDatesAndCompany(Class<MobileProduct> entityClazz, Date end, Date begin,
 			String company) {
-		// TODO Auto-generated method stub
-		return null;
+		return find("select en from " + entityClazz.getSimpleName() + " en where en.date between ? and ? and en.serviceCentre.company = ?"
+				+ " order by en.date desc", 
+				end, begin,company);
 	}
 
 	@Override

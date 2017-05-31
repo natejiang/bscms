@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定校验配置文件的DTD信息 -->
+<!DOCTYPE validators PUBLIC
+	"-//Apache Struts//Xwork validator 1.0.3//EN"
+	"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<!-- 校验文件的根元素 -->
+ 
+<validators>
+	<!-- 校验Action的managerInfo.username属性 -->
+	<field name="managerInfo.username">
+		<!-- 指定userInfo.username属性必须满足必填规则-->
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>必须输入用户名</message>		
+		</field-validator>
+		<!-- 指定managerInfo.username属性必须匹配正则表达式-->
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(\w{4,25})]]></param>
+			<message>您输入的用户名只能是字母和数字，且长度必须在4到25之间</message>
+		</field-validator>
+	</field>
+	<!-- 校验Action的userInfo.password属性 -->
+	<field name="managerInfo.password">
+		<!-- 指定userInfo.password属性必须满足必填规则-->
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>必须输入密码</message>		
+		</field-validator>
+		<!-- 指定userInfo.password属性必须匹配正则表达式-->
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(\w{4,25})]]></param>
+			<message>您输入的密码只能是字母和数字，且长度必须在4到25之间</message>
+		</field-validator>
+	</field>	
+	
+	<!-- 校验Action的userInfo.username属性 -->
+	<field name="userInfo.username">
+		<!-- 指定userInfo.username属性必须满足必填规则-->
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>必须输入用户名</message>		
+		</field-validator>
+		<!-- 指定userInfo.username属性必须匹配正则表达式-->
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(\w{4,25})]]></param>
+			<message>您输入的用户名只能是字母和数字，且长度必须在4到25之间</message>
+		</field-validator>
+	</field>
+	<field name="userInfo.fullname">
+		<!-- 指定userInfo.fullname属性必须满足必填规则-->
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>必须输入用户姓名</message>		
+		</field-validator>
+	</field>
+	<!-- 校验Action的userInfo.password属性 -->
+	<field name="userInfo.password">
+		<!-- 指定userInfo.password属性必须满足必填规则-->
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>必须输入密码</message>		
+		</field-validator>
+		<!-- 指定userInfo.password属性必须匹配正则表达式-->
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(\w{4,25})]]></param>
+			<message>您输入的密码只能是字母和数字，且长度必须在4到25之间</message>
+		</field-validator>
+	</field>
+</validators>

@@ -9,8 +9,11 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.cmttbj.bscms.common.config.WebConstant;
 import com.cmttbj.bscms.modules.entity.ServiceCentre;
+import com.cmttbj.bscms.modules.entity.UserInfo;
 import com.cmttbj.bscms.modules.service.ServiceCentreService;
+import com.cmttbj.bscms.modules.service.UserInfoService;
 /**
  * 初始化服务中心列表
  * @author jiangnan
@@ -20,7 +23,6 @@ public class ServiceCentreInitListener implements ServletContextListener{
 
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub		
 	}
 	@Override
 	public void contextInitialized(ServletContextEvent event) {

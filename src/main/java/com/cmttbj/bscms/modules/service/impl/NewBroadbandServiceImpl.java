@@ -35,7 +35,11 @@ public class NewBroadbandServiceImpl implements NewBroadbandService{
 		Object[] objs = (Object[]) objsList.get(0);
 		List<String> list = new ArrayList<>();
 		for(int i = 0;i < objs.length;i ++){
-			list.add(i, objs[i].toString());
+			if(objs[i] == null){
+				list.add(i, "0");
+			}else{
+				list.add(i, objs[i].toString());
+			}
 		}
 		return list;
 	}

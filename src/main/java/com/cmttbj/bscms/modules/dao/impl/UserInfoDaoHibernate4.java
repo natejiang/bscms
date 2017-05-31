@@ -26,4 +26,10 @@ public class UserInfoDaoHibernate4 extends BaseDaoHibernate4<UserInfo>
 				, userInfo.getUsername(), userInfo.getPassword());
 	}
 
+	@Override
+	public List<UserInfo> findByUsername(UserInfo userInfo) {
+		return find("select u from UserInfo u where u.username = ?"
+				, userInfo.getUsername());
+	}
+
 }

@@ -37,7 +37,7 @@ public class UserInfo implements Serializable{
 	private String fullname;
 	//用户归属的服务中心
 	@ManyToOne(targetEntity=ServiceCentre.class)
-	@JoinColumn(name="service_centre_id")
+	@JoinColumn(name="service_centre_id",referencedColumnName="service_centre_id",nullable=true)
 	private ServiceCentre serviceCentre;
 	
 	public UserInfo() {		

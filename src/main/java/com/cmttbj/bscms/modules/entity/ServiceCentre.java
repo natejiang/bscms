@@ -1,13 +1,17 @@
 package com.cmttbj.bscms.modules.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="service_centre")
@@ -27,6 +31,8 @@ public class ServiceCentre implements Serializable{
 	//服务中心对应的分公司
 	@Column(name="company", length=50)
 	private String company;
+	@OneToMany(targetEntity=UserInfo.class,mappedBy="serviceCentre")
+	private Set<UserInfo> userInfos = new HashSet<>();
 	public ServiceCentre() {
 	}
 
@@ -59,6 +65,17 @@ public class ServiceCentre implements Serializable{
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	
-	
+
+	public Set<UserInfo> getUserInfos() {
+		return userInfos;
+	}
+
+	public void setUserInfos(Set<UserInfo> userInfos) {
+		this.userInfos = userInfos;
+	}
+
+	@Override
+	public String toString() {
+		return serviceCentreId + " " + serviceCentreName;
+	}
 }

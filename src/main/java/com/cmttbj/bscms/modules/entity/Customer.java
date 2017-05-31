@@ -76,5 +76,4 @@ public class Customer implements java.io.Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
 }

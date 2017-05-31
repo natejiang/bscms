@@ -11,12 +11,16 @@ import com.cmttbj.bscms.modules.entity.ServiceCentre;
  * @param <T>
  */
 public interface DailyReportCommonService<T> {
+	//查询根据日期和服务站
 	List<T> searchByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre);	
+	//查询求和根据日期和服务站
 	List<String> sumByDatesAndServiceCentre(Date end, Date begin, ServiceCentre serviceCentre);
+	//查询根据日期
 	List<T> searchByDates(Date end, Date begin);
+	//查询求和根据日期
 	List<String> sumByDates(Date end, Date begin);
-	//查询客流量根据日期和分公司
+	//查询根据日期和分公司
 	List<T> searchByDatesAndCompany(Date end, Date begin, String company);
+	//查询求和根据日期和分公司
 	List<String> sumByDatesAndCompany(Date end, Date begin, String company);
-
 }

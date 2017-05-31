@@ -1,12 +1,18 @@
 package com.cmttbj.bscms.common.util;
 
 import java.util.List;
+/**
+ * 分页信息类
+ * @author jiangnan
+ * @2017-05-19
+ * @param <T>
+ */
 
 public class PageBean<T> {
 	private List<T> list;
 	
-	private int allRow;         //总记录数
-    private int totalPage;        //总页数
+	private long allRow;         //总记录数
+    private long totalPage;        //总页数
     private int currentPage;    //当前页
     private int pageSize;        //每页记录数
     
@@ -23,16 +29,16 @@ public class PageBean<T> {
 	public void setList(List<T> list) {
 		this.list = list;
 	}
-	public int getAllRow() {
+	public long getAllRow() {
         return allRow;
     }
-    public void setAllRow(int allRow) {
+    public void setAllRow(long allRow) {
         this.allRow = allRow;
     }
-    public int getTotalPage() {
+    public long getTotalPage() {
         return totalPage;
     }
-    public void setTotalPage(int totalPage) {
+    public void setTotalPage(long totalPage) {
         this.totalPage = totalPage;
     }
     public int getCurrentPage() {
@@ -83,8 +89,8 @@ public class PageBean<T> {
      * @param allRow 总记录数
      * @return 总页数
      */
-    public static int countTotalPage(final int pageSize,final int allRow){
-        int totalPage = allRow % pageSize == 0 ? allRow/pageSize : allRow/pageSize+1;
+    public static long countTotalPage(final int pageSize,final long allRow){
+        long totalPage = allRow % pageSize == 0 ? allRow/pageSize : allRow/pageSize+1;
         return totalPage;
     }
     
